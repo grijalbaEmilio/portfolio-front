@@ -1,0 +1,84 @@
+@import '../../scss/index.scss';
+
+.proyects {
+    position: relative;
+    width: 100%;
+    top: 0;
+    left: 0;
+
+    &-featured {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        align-items: center;
+        height: max-content;
+        background-color: rgb(145, 158, 158);
+        width: 100%;
+        padding: 0 0 20px 0;
+
+        &-title {
+            text-align: center;
+            width: 100%;
+        }
+
+        &-content {
+
+            &-left,
+            &-right {
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        &-division {
+            width: 100%;
+            height: 23px;
+            left: 0;
+            background-image: url('../../assets/png/wave_white.png');
+            position: absolute;
+            bottom: -11.5px;
+        }
+    }
+}
+
+@media(min-width : 900px) {
+    .proyects {
+
+        &-featured {
+            padding: 100px $padding-900 30px $padding-900;
+            width: auto;
+
+            &-content {
+                display: flex;
+                width: 100%;
+                flex-direction: row;
+                align-items: initial;
+                justify-content: center;
+
+                &-left,
+                &-right {
+                    width: 100%;
+                    //margin: 0 20px;
+                }
+            }
+        }
+
+        &-github{
+            padding: 20px $padding-900 30px $padding-900;
+        }
+    }
+}
+
+@media (min-width : 1240px) {
+    .proyects {
+        &-featured {
+            padding: 100px $padding-1240 50px $padding-1240;
+        }
+        &-github{
+            padding: 20px $padding-1240 50px $padding-1240;
+        }
+    }
+}

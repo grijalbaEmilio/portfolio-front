@@ -1,0 +1,78 @@
+@import '../../scss/index.scss';
+
+.cv > .cv-left,
+.cv > .cv-left > h2,
+.cv-left > ul > li > p,
+.cv-left > hr {
+  color: $secondary-color;
+}
+
+hr {
+  width: 80%;
+}
+
+.download {
+  display: block;
+  margin: 50px auto;
+}
+
+.cv {
+  margin-bottom: 20px;
+
+  &-left {
+    padding: 10px;
+    background-color: $primary-color;
+
+    &-img-luis {
+      height: 200px;
+      width: 200px;
+      border-radius: 50%;
+      margin: 20px auto;
+      display: block;
+    }
+
+    &-contact {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+
+      &-icon {
+        margin-right: 20px;
+        font-size: 25px;
+      }
+    }
+  }
+
+  &-right {
+    padding: 10px;
+  }
+}
+
+@media (min-width: 900px) {
+  .cv {
+    display: flex;
+    flex-direction: row;
+    border-radius: 5px;
+    box-shadow: 5px 5px 8px 8px #a0a0a0;
+    margin: 100px $padding-900 0 $padding-900;
+
+    &-left {
+      padding: 30px;
+    }
+
+    &-right {
+      padding: 30px;
+      &-languages {
+        display: flex;
+        flex-direction: row;
+      }
+    }
+  }
+}
+
+@media (min-width: 1240px) {
+  .cv {
+    margin: 100px $padding-1240 0 $padding-1240;
+  }
+}

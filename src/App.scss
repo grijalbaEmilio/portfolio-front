@@ -1,0 +1,69 @@
+@import './scss/index.scss';
+
+body{
+    margin : 0;
+}
+
+canvas{
+    position: absolute !important;
+}
+
+.App{
+    font-family: 'Permanent Marker', cursive; 
+    color: $color-font;
+    //background-image: url('./assets/jpg/libro.jpg');
+    //background-color: rgb(184, 184, 184);
+}
+
+p{
+    font-family: 'Ubuntu', sans-serif;
+    line-height : 20px;
+    font-size : 1.3rem;
+    color: $color-font;
+}
+
+h1{
+    font-size : 2.5rem;
+    margin: 0;
+    color : $primary-color;
+}
+
+h2{
+    font-size : 2rem;
+    color : $primary-color;
+}
+
+button{
+    border: 2px solid $color-font;
+    color: $color-font;
+    background: transparent;
+    font-weight: bold;
+    border-radius: 15px;
+    padding: 5px 50px;
+    font-size: 1.2rem;
+
+}
+
+button:hover{
+    background-color: wheat;
+}
+
+@media (min-width : 900px){
+   /*  .App{
+        margin: 100px 120px 0 120px;
+    } */
+
+    h1{
+        font-size: 3.5rem;
+    }
+
+    p{
+        line-height : 28px;
+    }
+}
+
+@media (min-width : 1240px){
+    /* .App{
+        margin: 100px 200px 0 200px;
+    } */
+}
