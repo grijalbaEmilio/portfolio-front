@@ -14,7 +14,7 @@
   "plugins": ["react"],
   "rules": {
     "quotes": "error", // comillas
-    "no-console": 1, // habilita console.log
+    "no-console": "off", // habilita console.log
     "semi": ["error", "never"], // nunca ;
     "no-restricted-exports": "off",
     "react/prop-types": "off",

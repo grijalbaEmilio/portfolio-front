@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import './Home.scss'
 import { ArrowDownOutlined } from '@ant-design/icons'
-import Libro from '../../assets/jpg/simple.jpg'
 import Luis from '../../assets/jpg/luis2.jpg'
 import { windowScreenMin } from '../../config/helpers'
 
@@ -28,7 +27,7 @@ export default function Home() {
 
   return (
     <div className="home">
-      <img className="home-backgroud-image" src={Libro} alt="#" />
+      <div className="home-backgroud-image" />
       <BackgroundParticles />
 
       <div className="home-content">

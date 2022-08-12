@@ -1,0 +1,28 @@
+@import '../../scss/index.scss';
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &-title {
+    text-align: center;
+  }
+
+  &-content {
+    width: 100%;
+    & > input {
+      display: block;
+      margin: 10px auto;
+      padding: 5px;
+      border-radius: 2rem;
+      border-color: transparent;
+      background-color: #cccbcb;
+      width: 80%;
+    }
+  }
+
+  &-buttons {
+    margin: 25px 0 0 0;
+  }
+}

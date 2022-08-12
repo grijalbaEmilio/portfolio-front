@@ -1,0 +1,40 @@
+@import '../../scss/index.scss';
+
+.selected {
+  border-bottom: 2px solid black !important;
+}
+
+.login-page {
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  background-image: url('../../assets/jpg/simple.jpg');
+
+  &-content {
+    margin-top: 150px;
+    background-color: #8080804d;
+    padding: 10px;
+    height: min-content;
+    &-header {
+      &-button {
+        width: calc(50% - 6px);
+        text-align: center;
+        border-color: transparent;
+        border-radius: 0;
+      }
+    }
+  }
+}
+
+@media (min-width: 900px) {
+  .login-page {
+    padding: 100px 0 0 0;
+    padding: 0 $padding-900;
+  }
+}
+
+@media (min-width: 1240px) {
+  .login-page {
+    padding: 0 $padding-1240;
+  }
+}

@@ -4,14 +4,14 @@ import { windowScreenMin } from '../../config/helpers'
 import './Card.scss'
 
 export default function Card({ children }) {
-  const { image, tecnologies, title, description, demo, code } = children
+  const { imgUrl, tecnologies, title, description, demo, code } = children
   const [front, setFront] = useState(false)
   const [vewDescription, setVewDescription] = useState(false)
 
   function hoverImg() {
     setFront(true)
   }
-  console.log('hola')
+
   function upImg() {
     setFront(false)
   }
@@ -25,7 +25,7 @@ export default function Card({ children }) {
   return (
     <div className="card">
       <div className="card-img">
-        <img className="card-img-background" src={image} alt="sin imágen" />
+        <img className="card-img-background" src={imgUrl} alt="sin imágen" />
 
         {front ? (
           <div className="card-img-front">

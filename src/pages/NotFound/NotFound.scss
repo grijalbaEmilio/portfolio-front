@@ -1,0 +1,21 @@
+@import '../../scss/index.scss';
+
+.not-found {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &-gif {
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+}
+
+@media (min-width: 900px) {
+  .not-found {
+    margin: 100px 0 0 0;
+  }
+}

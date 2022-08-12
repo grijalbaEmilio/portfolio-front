@@ -1,148 +1,136 @@
 @import '../../scss/index.scss';
 
 .background-hr {
-    background-image: url('../../assets/png/wave_white.png') !important;
+  background-image: url('../../assets/png/wave_white.png') !important;
 }
 
 .home {
-    width: auto;
+  width: auto;
 
+  &-backgroud-image {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(49, 57, 58);
+  }
 
-    &-backgroud-image {
-        position: absolute;
-        z-index: 0;
-        top: 0;
-        left: 0;
+  &-content {
+    &-start {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
+      justify-content: space-between;
+      height: 100vh;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      z-index: 5;
+
+      &-welcome {
+        &-title {
+          margin: 150px 0 0 0;
+        }
+
+        &-image {
+          width: 150px;
+          height: 150px;
+          border-radius: 50%;
+        }
+      }
+
+      &-arrow {
+        font-size: 30px;
+        margin: 20px 0;
+
+        animation-duration: 0.5s;
+        animation-name: arrow;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+      }
+
+      &-hr {
+        transform: translateY(50%);
         width: 100vw;
-        height: 100vh;
+        background: transparent;
+        height: 23px;
+      }
+
+      @keyframes arrow {
+        from {
+          transform: translateY(10px);
+        }
+
+        to {
+          transform: translatey(0);
+        }
+      }
     }
 
+    &-continue {
+      margin-top: 100vh;
+    }
+  }
+}
+
+@media (min-width: 400px) {
+  .home-content-start-welcome-image {
+    width: 220px;
+    height: 220px;
+  }
+}
+
+@media (min-width: 900px) {
+  .home {
+    &-content-start {
+      text-align: start;
+      margin: 0 $padding-900;
+
+      &-welcome {
+        margin: 200px 0 0 0;
+        display: flex;
+        height: auto;
+        flex-direction: row;
+
+        &-title {
+          margin: 0;
+        }
+
+        &-image {
+          margin-left: 130px;
+          width: 280px;
+          height: 280px;
+        }
+      }
+
+      &-arrows {
+        display: flex;
+        flex-direction: row;
+        width: 200px;
+        justify-content: space-between;
+      }
+
+      &-continue {
+        padding: 0 $padding-900;
+      }
+    }
+  }
+}
+
+@media (min-width: 1240px) {
+  .home {
     &-content {
+      &-start {
+        margin: 0 $padding-1240;
+      }
 
-        &-start {
-            display: flex;
-            flex-direction: column;
-            text-align: center;
-            align-items: center;
-            justify-content: space-between;
-            height: 100vh;
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 0;
-            z-index: 5;
-
-            &-welcome {
-                &-title {
-                    margin: 150px 0 0 0;
-                }
-
-                &-image {
-                    width: 150px;
-                    height: 150px;
-                    border-radius: 50%;
-
-                }
-            }
-
-
-
-            &-arrow {
-                font-size: 30px;
-                margin: 20px 0;
-
-                animation-duration: .5s;
-                animation-name: arrow;
-                animation-iteration-count: infinite;
-                animation-direction: alternate;
-            }
-
-            &-hr {
-                transform: translateY(50%);
-                width: 100vw;
-                background: transparent;
-                height: 23px;
-            }
-
-
-            @keyframes arrow {
-                from {
-                    transform: translateY(10px);
-                }
-
-                to {
-                    transform: translatey(0);
-                }
-            }
-        }
-
-        &-continue {
-            margin-top: 100vh;
-        }
+      &-continue {
+        padding: 0 $padding-1240;
+      }
     }
-}
-
-@media (min-width : 400px) {
-    .home-content-start-welcome-image {
-        width: 220px;
-        height: 220px;
-    }
-
-}
-
-@media (min-width : 900px) {
-    .home {
-        &-content-start {
-            text-align: start;
-            margin: 0 $padding-900;
-
-            &-welcome {
-                margin: 200px 0 0 0;
-                display: flex;
-                height: auto;
-                flex-direction: row;
-
-                &-title {
-                    margin: 0;
-
-                }
-
-                &-image {
-                    margin-left: 130px;
-                    width: 280px;
-                    height: 280px;
-                }
-            }
-
-            &-arrows {
-                display: flex;
-                flex-direction: row;
-                width: 200px;
-                justify-content: space-between;
-            }
-
-            &-continue {
-                padding: 0 $padding-900;
-            }
-
-        }
-    }
-}
-
-
-@media (min-width : 1240px) {
-    .home {
-
-        &-content {
-            &-start {
-                margin: 0 $padding-1240;
-            }
-
-            &-continue{
-                padding : 0 $padding-1240;
-            }
-        }
-
-
-    }
+  }
 }

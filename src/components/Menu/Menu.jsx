@@ -5,9 +5,11 @@ import { windowScreenMin } from '../../config/helpers'
 import Logo from '../../assets/png/logo.png'
 import './Menu.scss'
 
-export default function Menu() {
+export default function Menu({ children }) {
+  // children is json
   const [visibilityMenu, setVisibilityMenu] = useState(true)
   useEffect(() => {
+    console.log(children)
     if (windowScreenMin() && visibilityMenu) {
       setVisibilityMenu(false)
     } else {
@@ -88,6 +90,20 @@ export default function Menu() {
                 </Link>
               </h1>
             </li>
+            {children.admin ? (
+              <li>
+                <h1>
+                  <Link
+                    to="/edit"
+                    onClick={() => {
+                      screen(setVisibilityMenu)
+                    }}
+                  >
+                    editar
+                  </Link>
+                </h1>
+              </li>
+            ) : null}
             <li>
               <h1>
                 <Link
@@ -98,6 +114,22 @@ export default function Menu() {
                 >
                   Curriculum
                 </Link>
+              </h1>
+            </li>
+            <li>
+              <h1 className="login">
+                {children.userName ? (
+                  'salir'
+                ) : (
+                  <Link
+                    to="/login"
+                    onClick={() => {
+                      screen(setVisibilityMenu)
+                    }}
+                  >
+                    Ingresar
+                  </Link>
+                )}
               </h1>
             </li>
           </ul>
