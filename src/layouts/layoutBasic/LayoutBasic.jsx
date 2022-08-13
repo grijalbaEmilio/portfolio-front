@@ -6,16 +6,10 @@ import Menu from '../../components/Menu'
 export default function LayoutBasic({ children }) {
   const { appData } = useContext(providerApp)
   const { user } = appData
-  const { name } = user
-  const userLogued = () => {
-    if (user.role !== 'reviewer') {
-      return false
-    }
-    return true
-  }
+
   return (
     <div>
-      <Menu>{{ admin: userLogued(), userName: name }}</Menu>
+      <Menu>{{ user }}</Menu>
       <main>{children}</main>
       <footer>
         <span className="footer-division" />

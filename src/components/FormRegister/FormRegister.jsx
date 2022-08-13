@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { postUser } from '../../api/usersApi'
 import './FormRegister.scss'
 
-export default function FormRegister() {
+export default function FormRegister({ children }) {
+  const { callback } = children
   const [dataForm, setDataForm] = useState({
     name: null,
     email: null,
@@ -17,7 +18,9 @@ export default function FormRegister() {
 
   const saveUser = async () => {
     const response = await postUser(dataForm)
-    console.log(response)
+    if (response.mode === 'success') {
+      callback('login')
+    }
   }
   return (
     <div className="register-form">

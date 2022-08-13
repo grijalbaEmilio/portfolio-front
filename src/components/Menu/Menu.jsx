@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { PlusCircleFilled, MinusCircleFilled } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import { windowScreenMin } from '../../config/helpers'
+import { providerApp } from '../../provider/appProvider'
 import Logo from '../../assets/png/logo.png'
 import './Menu.scss'
 
 export default function Menu({ children }) {
   // children is json
+  const { user } = children
+  const { logOut } = useContext(providerApp)
+
   const [visibilityMenu, setVisibilityMenu] = useState(true)
   useEffect(() => {
-    console.log(children)
     if (windowScreenMin() && visibilityMenu) {
       setVisibilityMenu(false)
     } else {
@@ -90,11 +93,11 @@ export default function Menu({ children }) {
                 </Link>
               </h1>
             </li>
-            {children.admin ? (
+            {user.role === 'admin' ? (
               <li>
                 <h1>
                   <Link
-                    to="/edit"
+                    to="/admin/edit"
                     onClick={() => {
                       screen(setVisibilityMenu)
                     }}
@@ -117,17 +120,27 @@ export default function Menu({ children }) {
               </h1>
             </li>
             <li>
-              <h1 className="login">
-                {children.userName ? (
-                  'salir'
+              <h1>
+                {user.name ? (
+                  <Link
+                    className="login"
+                    to="/"
+                    onClick={() => {
+                      screen(setVisibilityMenu)
+                      logOut()
+                    }}
+                  >
+                    Logout
+                  </Link>
                 ) : (
                   <Link
+                    className="login"
                     to="/login"
                     onClick={() => {
                       screen(setVisibilityMenu)
                     }}
                   >
-                    Ingresar
+                    Login
                   </Link>
                 )}
               </h1>

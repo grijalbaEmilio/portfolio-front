@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react'
 import { providerApp } from '../../provider/appProvider'
-import { getUser } from '../../api/usersApi'
+import { loginUser } from '../../api/usersApi'
 
 import './FormLogin.scss'
 
 export default function FormLogin() {
-  const { appData, setAppData, reload, setReload } = useContext(providerApp)
+  const { login } = useContext(providerApp)
 
   const [dataForm, setDataForm] = useState({
     email: null,
@@ -15,17 +15,15 @@ export default function FormLogin() {
   const eventChange = (event) => {
     const { value, name } = event.target
     setDataForm({ ...dataForm, [name]: value })
-    console.log(dataForm)
   }
 
   const signinUse = async () => {
-    const response = await getUser(dataForm)
-    const { mode, message, user } = response
+    const response = await loginUser(dataForm)
+    const { mode, message } = response
     if (mode !== 'success') {
       console.log(message)
     } else {
-      setAppData({ ...appData, user })
-      setReload(!reload)
+      login()
     }
   }
 
@@ -48,7 +46,11 @@ export default function FormLogin() {
         />
       </div>
 
-      <button onClick={signinUse} type="button" className="login-form-buttons">
+      <button
+        type="button"
+        className="login-form-buttons"
+        onClick={() => signinUse()}
+      >
         Ingresar
       </button>
     </div>

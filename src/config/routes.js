@@ -6,6 +6,7 @@ import Proyects from '../pages/Proyects'
 import About from '../pages/About'
 import NotFound from '../pages/NotFound'
 import Login from '../pages/Login'
+import Edit from '../pages/Edit/Edit'
 
 const routes = [
   {
@@ -32,8 +33,8 @@ const routes = [
 
 const routesAdmin = [
   {
-    path: '/admin',
-    component: Home,
+    path: '/admin/edit',
+    component: Edit,
     layout: LayoutBasic,
   },
 ]

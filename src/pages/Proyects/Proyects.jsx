@@ -8,7 +8,6 @@ export default function Proyects() {
   const { appData, reload, setReload } = useContext(providerApp)
   const { dataProyects } = appData
   useEffect(() => {
-    console.log(dataProyects)
     setProyectsFin(dataProyects)
   }, [dataProyects])
 

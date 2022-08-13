@@ -23,8 +23,7 @@ export async function postUser(data) {
   }
 }
 
-export async function getUser(data) {
-  console.log(data)
+export async function loginUser(data) {
   const options = {
     method: 'POST',
     headers: { 'Content-type': 'application/json' },
@@ -33,7 +32,7 @@ export async function getUser(data) {
 
   const response = await fetch(`${BASE_PATH}/users/loginUser`, options)
 
-  const { message, user } = await response.json()
+  const { message, accesToken } = await response.json()
 
   if (!response.ok) {
     return {
@@ -41,8 +40,10 @@ export async function getUser(data) {
       message,
     }
   }
+  localStorage.setItem('accesToken', accesToken)
+
   return {
     mode: 'success',
-    user,
+    message: 'login correcto',
   }
 }
