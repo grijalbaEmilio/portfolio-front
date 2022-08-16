@@ -20,6 +20,9 @@ export default function Menu({ children }) {
         const menu = document.querySelector('.menu')
         const contentMenu = document.querySelector('.menu-content')
 
+        if (windowScreenMin()) {
+          return
+        }
         if (window.scrollY > 5) {
           menu.classList.add('background-menu')
           menu.classList.add('height-scroll')
