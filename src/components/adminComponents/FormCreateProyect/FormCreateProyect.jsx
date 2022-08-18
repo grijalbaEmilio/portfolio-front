@@ -1,44 +1,56 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { saveOneProyect } from '../../../api/proyectsApi'
+import { providerApp } from '../../../provider/appProvider'
 
 import './FormCreateProyect.scss'
 
-export default function FormCreateProyect() {
+export default function FormCreateProyect({ children }) {
+  const { closeModal } = children
   const [dataForm, setDataForm] = useState({
     img: null,
-    tecnologies: null,
+    tecnologies: [],
     title: null,
     description: null,
     demo: null,
     code: null,
   })
 
+  const [inputs, setInputs] = useState([0])
+
+  const { reload, setReload } = useContext(providerApp)
+
   const eventChange = (event) => {
     const { value, name } = event.target
-    if (name === 'image') {
+    if (name === 'img') {
       setDataForm({ ...dataForm, [name]: event.target.files[0] })
+      return
+    }
+    if (name.startsWith('tecnologie-')) {
+      const { tecnologies } = { ...dataForm }
+      tecnologies[name[name.length - 1]] = value
+      setDataForm({ ...dataForm, tecnologies })
       return
     }
     setDataForm({ ...dataForm, [name]: value })
   }
 
-  const saveImg = () => {
+  const saveImg = async () => {
     const formData = new FormData()
     const { img, tecnologies, description, title, demo, code } = dataForm
     formData.append('img', img)
-    formData.append('tecnologies', tecnologies)
+    formData.append('tecnologies', JSON.stringify(tecnologies))
     formData.append('description', description)
     formData.append('title', title)
     formData.append('demo', demo)
     formData.append('code', code)
-    console.log(formData.get('img'))
-  }
 
-  const imputsT = () => {
-    const inputs = []
-    for (let i = 0; i < 2; +i) {
-      inputs.push(<input type="text" />)
+    const res = await saveOneProyect(formData)
+    if (res.mode !== 'success') {
+      console.log(res.message)
+      return
     }
-    return inputs
+    setReload(!reload)
+    closeModal(false)
   }
 
   return (
@@ -46,17 +58,35 @@ export default function FormCreateProyect() {
       <h2 className="postProyects-title">formulario de Ingreso</h2>
 
       <form name="createProyect" className="postProyects-content">
-        <input
-          onChange={eventChange}
-          name="image"
-          type="file"
-          accept="image/*"
-        />
-        <div className="tecnologies">
-          <button type="button">más</button>
-          {imputsT()}
+        <input onChange={eventChange} name="img" type="file" accept="image/*" />
+        <div className="postProyects-content-tecnologies">
+          <button type="button" onClick={() => setInputs([...inputs, 0])}>
+            más
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              const newInputs = [...inputs]
+              const { tecnologies } = { ...dataForm }
+              tecnologies.pop(0)
+              newInputs.pop(0)
+              setInputs([...newInputs])
+              setDataForm({ ...dataForm, tecnologies })
+            }}
+          >
+            menos
+          </button>
+          {inputs.map((i, index) => (
+            <input
+              key={index}
+              name={`tecnologie-${index}`}
+              type="text"
+              onChange={eventChange}
+            />
+          ))}
         </div>
         <textarea
+          onChange={eventChange}
           name="description"
           rows="10"
           cols="50"

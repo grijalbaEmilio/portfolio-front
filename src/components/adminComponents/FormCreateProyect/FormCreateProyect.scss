@@ -1,0 +1,11 @@
+.postProyects {
+  &-content {
+    display: flex;
+    flex-direction: column;
+
+    &-tecnologies {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

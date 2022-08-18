@@ -8,4 +8,27 @@ export async function getProyects() {
   return resp
 }
 
+export async function saveOneProyect(bodyForm) {
+  const options = {
+    method: 'POST',
+    body: bodyForm,
+  }
+
+  const resp = await fetch(`${BASE_PATH}/proyects/postProyect`, options)
+
+  const { message } = await resp.json()
+
+  if (!resp.ok) {
+    return {
+      mode: 'error',
+      message,
+    }
+  }
+
+  return {
+    mode: 'success',
+    message,
+  }
+}
+
 export function postProyect() {}

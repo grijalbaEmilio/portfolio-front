@@ -11,7 +11,7 @@ import './Edit.scss'
 export default function Edit() {
   const { appData } = useContext(providerApp)
   const { user, dataProyects } = appData
-  const [vewModal, setVewModal] = useState(true)
+  const [vewModal, setVewModal] = useState(false)
   let list = null
 
   if (dataProyects) {
@@ -47,14 +47,25 @@ export default function Edit() {
     <div className="edit">
       {vewModal ? (
         <Modal>
-          {{ main: <FormCreateProyect />, closeModal: setVewModal }}
+          {{
+            main: (
+              <FormCreateProyect>
+                {{ closeModal: setVewModal }}
+              </FormCreateProyect>
+            ),
+            closeModal: setVewModal,
+          }}
         </Modal>
       ) : null}
       {list ? (
         <div className="edit-proyects">
           <div className="edit-proyects-header">
             <h2>Proyectos</h2>
-            <button type="button" className="button-list button-info">
+            <button
+              type="button"
+              className="button-list button-info"
+              onClick={() => setVewModal(true)}
+            >
               <PlusCircleFilled />
             </button>
           </div>
