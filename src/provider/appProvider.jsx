@@ -13,6 +13,7 @@ export default function appProvider({ children }) {
       email: null,
       id: null,
       role: null,
+      _id: null,
     },
     comments: null,
   })

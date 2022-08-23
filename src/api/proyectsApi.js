@@ -31,4 +31,49 @@ export async function saveOneProyect(bodyForm) {
   }
 }
 
+export async function updateOneProyect(bodyForm, id) {
+  const options = {
+    method: 'PUT',
+    body: bodyForm,
+  }
+
+  const url = `${BASE_PATH}/proyects/updateOneProyect/${id}`
+
+  const resp = await fetch(url, options)
+
+  const { message } = await resp.json()
+
+  if (!resp.ok) {
+    return {
+      mode: 'error',
+      message,
+    }
+  }
+
+  return {
+    mode: 'success',
+    message,
+  }
+}
+
+export async function deleteOneProyect(id) {
+  const resp = await fetch(`${BASE_PATH}/proyects/removeOneProyect/${id}`, {
+    method: 'DELETE',
+  })
+
+  const { message } = await resp.json()
+
+  if (!resp.ok) {
+    return {
+      mode: 'error',
+      message,
+    }
+  }
+
+  return {
+    mode: 'success',
+    message,
+  }
+}
+
 export function postProyect() {}
