@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { DownOutlined, UpOutlined } from '@ant-design/icons'
-import { windowScreenMin } from '../../config/helpers'
+import { windowWidthMobil } from '../../config/helpers'
 import './Card.scss'
 
 export default function Card({ children }) {
@@ -17,7 +17,7 @@ export default function Card({ children }) {
   }
 
   useEffect(() => {
-    if (windowScreenMin()) {
+    if (windowWidthMobil()) {
       setFront(true)
     }
   }, [])

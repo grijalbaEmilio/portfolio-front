@@ -8,8 +8,12 @@ canvas {
   position: absolute !important;
 }
 
+.invalidInput {
+  background-color: $invalid-input !important;
+}
+
 .App {
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'sans-serif';
   color: $color-font;
   //background-image: url('./assets/jpg/libro.jpg');
   //background-color: rgb(184, 184, 184);

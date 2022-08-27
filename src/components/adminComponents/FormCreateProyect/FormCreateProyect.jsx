@@ -7,12 +7,12 @@ import './FormCreateProyect.scss'
 export default function FormCreateProyect({ children }) {
   const { closeModal } = children
   const [dataForm, setDataForm] = useState({
-    img: null,
+    img: false,
     tecnologies: [],
-    title: null,
-    description: null,
-    demo: null,
-    code: null,
+    title: false,
+    description: false,
+    demo: false,
+    code: false,
   })
 
   const [inputs, setInputs] = useState([0])
@@ -34,9 +34,13 @@ export default function FormCreateProyect({ children }) {
     setDataForm({ ...dataForm, [name]: value })
   }
 
-  const saveImg = async () => {
+  const saveProgram = async () => {
     const formData = new FormData()
     const { img, tecnologies, description, title, demo, code } = dataForm
+    if (!img || !tecnologies || !description || !title || !demo || !code) {
+      console.log('incomplete data')
+      return
+    }
     formData.append('img', img)
     formData.append('tecnologies', JSON.stringify(tecnologies))
     formData.append('description', description)
@@ -112,7 +116,11 @@ export default function FormCreateProyect({ children }) {
         />
       </form>
 
-      <button type="button" className="postProyects-button" onClick={saveImg}>
+      <button
+        type="button"
+        className="postProyects-button"
+        onClick={saveProgram}
+      >
         Crear
       </button>
     </div>

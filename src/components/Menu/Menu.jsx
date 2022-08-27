@@ -1,7 +1,15 @@
+/* eslint-disable react/jsx-no-bind */
 import React, { useState, useEffect, useContext } from 'react'
-import { PlusCircleFilled, MinusCircleFilled } from '@ant-design/icons'
+import {
+  HomeFilled,
+  FolderOpenFilled,
+  EditFilled,
+  ProfileFilled,
+  LoginOutlined,
+  LogoutOutlined,
+} from '@ant-design/icons'
 import { Link } from 'react-router-dom'
-import { windowScreenMin } from '../../config/helpers'
+import { windowWidthMobil } from '../../config/helpers'
 import { providerApp } from '../../provider/appProvider'
 import Logo from '../../assets/png/logo.png'
 import './Menu.scss'
@@ -11,146 +19,185 @@ export default function Menu({ children }) {
   const { user } = children
   const { logOut } = useContext(providerApp)
 
-  const [visibilityMenu, setVisibilityMenu] = useState(true)
-  useEffect(() => {
-    if (windowScreenMin() && visibilityMenu) {
-      setVisibilityMenu(false)
-    } else {
-      window.addEventListener('scroll', () => {
-        const menu = document.querySelector('.menu')
-        const contentMenu = document.querySelector('.menu-content')
+  const [optionSelected, setOptionSelected] = useState('home')
 
-        if (windowScreenMin()) {
+  useEffect(() => {
+    let previusScrollY = 0
+    window.addEventListener('scroll', () => {
+      const contentMenu = document.querySelector('.menu-content')
+
+      const actualScrollY = window.scrollY
+      if (windowWidthMobil()) {
+        if (actualScrollY > previusScrollY) {
+          contentMenu.classList.add('hidden-menu-bye')
+          contentMenu.classList.remove('hidden-menu-hello')
+          previusScrollY = actualScrollY
           return
         }
-        if (window.scrollY > 5) {
-          menu.classList.add('background-menu')
-          menu.classList.add('height-scroll')
-          contentMenu.classList.add('height-scroll')
-        } else {
-          menu.classList.remove('background-menu')
-          menu.classList.remove('height-scroll')
-          contentMenu.classList.remove('height-scroll')
-        }
-      })
-    }
+        contentMenu.classList.remove('hidden-menu-bye')
+        contentMenu.classList.add('hidden-menu-hello')
+        previusScrollY = actualScrollY
+        return
+      }
+      if (actualScrollY > 5) {
+        contentMenu.classList.add('background-menu')
+        contentMenu.classList.add('height-scroll')
+      } else {
+        contentMenu.classList.remove('background-menu')
+        contentMenu.classList.remove('height-scroll')
+      }
+    })
   }, [])
 
-  function screen(setVisibilityMenu) {
-    if (windowScreenMin()) {
-      setVisibilityMenu(false)
+  function iconsOptionsMenu() {
+    const iconsSmallWidht = {
+      logo: '< LE />',
+      home: (
+        <>
+          <HomeFilled />
+          <span className="descriptionItem">Inicio</span>
+        </>
+      ),
+      proyects: (
+        <>
+          <FolderOpenFilled />
+          <span className="descriptionItem">Proyectos</span>
+        </>
+      ),
+      edit: (
+        <>
+          <EditFilled />
+          <span className="descriptionItem">Editar</span>
+        </>
+      ),
+      curriculum: (
+        <>
+          <ProfileFilled />
+          <span className="descriptionItem">CV</span>
+        </>
+      ),
+      logIn: (
+        <>
+          <LoginOutlined />
+          <span className="descriptionItem">Ingresar</span>
+        </>
+      ),
+      logOut: (
+        <>
+          <LogoutOutlined />
+          <span className="descriptionItem">Salir</span>
+        </>
+      ),
     }
+
+    const iconsLargeWidht = {
+      logo: <img className="luis-logo" src={Logo} alt="< LuisEmilio />" />,
+      home: 'Inicio',
+      proyects: 'Proyetos',
+      edit: 'Editar',
+      curriculum: 'CV',
+      logIn: 'logIn',
+      logOut: 'logOut',
+    }
+
+    if (windowWidthMobil()) {
+      return iconsSmallWidht
+    }
+    return iconsLargeWidht
+  }
+
+  function classItemSelected(option) {
+    if (windowWidthMobil()) {
+      return optionSelected === option ? 'option-selected-mobil' : null
+    }
+    return optionSelected === option ? 'option-selected-laptop' : null
+  }
+
+  function itemsLogInLogOut() {
+    const { name } = user
+
+    if (!name) {
+      return (
+        <Link
+          to="/login"
+          onClick={() => setOptionSelected('login')}
+          className={classItemSelected('login')}
+        >
+          {iconsOptionsMenu().logIn}
+        </Link>
+      )
+    }
+    return (
+      <Link
+        to="/"
+        onClick={() => {
+          setOptionSelected('home')
+          logOut()
+        }}
+        className={optionSelected === 'login' ? 'option-selected' : null}
+      >
+        {iconsOptionsMenu().logOut}
+      </Link>
+    )
+  }
+
+  function itemLogo() {
+    if (!windowWidthMobil()) {
+      return (
+        <li>
+          <Link to="/">{iconsOptionsMenu().logo}</Link>
+        </li>
+      )
+    }
+    return null
   }
 
   return (
     <div className="menu">
-      <button
-        type="button"
-        onClick={() => {
-          setVisibilityMenu(!visibilityMenu)
-        }}
-        className="menu-toogle"
-      >
-        <div className="menu-toogle-icon">
-          {visibilityMenu ? <MinusCircleFilled /> : <PlusCircleFilled />}
-        </div>
-      </button>
-      {visibilityMenu ? (
-        <div className="menu-content">
-          <ul>
+      <div className="menu-content">
+        <ul>
+          {itemLogo()}
+          <li>
+            <Link
+              to="/"
+              onClick={() => setOptionSelected('home')}
+              className={classItemSelected('home')}
+            >
+              {iconsOptionsMenu().home}
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/proyects"
+              onClick={() => setOptionSelected('proyects')}
+              className={classItemSelected('proyects')}
+            >
+              {iconsOptionsMenu().proyects}
+            </Link>
+          </li>
+          {user.role === 'admin' ? (
             <li>
-              <h1>
-                <Link
-                  to="/"
-                  onClick={() => {
-                    screen(setVisibilityMenu)
-                  }}
-                >
-                  <img src={Logo} alt="" />
-                </Link>
-              </h1>
+              <Link
+                to="/admin/edit"
+                onClick={() => setOptionSelected('edit')}
+                className={classItemSelected('edit')}
+              >
+                {iconsOptionsMenu().edit}
+              </Link>
             </li>
-          </ul>
-          <ul>
-            <li>
-              <h1>
-                <Link
-                  to="/"
-                  onClick={() => {
-                    screen(setVisibilityMenu)
-                  }}
-                >
-                  Inicio
-                </Link>
-              </h1>
-            </li>
-            <li>
-              <h1>
-                <Link
-                  to="/proyects"
-                  onClick={() => {
-                    screen(setVisibilityMenu)
-                  }}
-                >
-                  Proyectos
-                </Link>
-              </h1>
-            </li>
-            {user.role === 'admin' ? (
-              <li>
-                <h1>
-                  <Link
-                    to="/admin/edit"
-                    onClick={() => {
-                      screen(setVisibilityMenu)
-                    }}
-                  >
-                    editar
-                  </Link>
-                </h1>
-              </li>
-            ) : null}
-            <li>
-              <h1>
-                <Link
-                  to="/about"
-                  onClick={() => {
-                    screen(setVisibilityMenu)
-                  }}
-                >
-                  Curriculum
-                </Link>
-              </h1>
-            </li>
-            <li>
-              <h1>
-                {user.name ? (
-                  <Link
-                    className="login"
-                    to="/"
-                    onClick={() => {
-                      screen(setVisibilityMenu)
-                      logOut()
-                    }}
-                  >
-                    Logout
-                  </Link>
-                ) : (
-                  <Link
-                    className="login"
-                    to="/login"
-                    onClick={() => {
-                      screen(setVisibilityMenu)
-                    }}
-                  >
-                    Login
-                  </Link>
-                )}
-              </h1>
-            </li>
-          </ul>
-        </div>
-      ) : null}
+          ) : null}
+          <li>
+            <Link
+              to="/about"
+              onClick={() => setOptionSelected('about')}
+              className={classItemSelected('about')}
+            >
+              {iconsOptionsMenu().curriculum}
+            </Link>
+          </li>
+          <li>{itemsLogInLogOut()}</li>
+        </ul>
+      </div>
     </div>
   )
 }

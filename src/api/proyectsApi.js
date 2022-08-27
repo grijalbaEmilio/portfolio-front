@@ -76,4 +76,7 @@ export async function deleteOneProyect(id) {
   }
 }
 
-export function postProyect() {}
+export async function getGitHubProyects() {
+  console.log('github proyects')
+  return { p1: 'nn' }
+}

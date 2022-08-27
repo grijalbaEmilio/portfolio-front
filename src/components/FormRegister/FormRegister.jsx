@@ -1,5 +1,9 @@
 import React, { useState } from 'react'
 import { postUser } from '../../api/usersApi'
+import {
+  emailValidation,
+  lengthValidation,
+} from '../../validations/FormValidation'
 import './FormRegister.scss'
 
 export default function FormRegister({ children }) {
@@ -11,16 +15,73 @@ export default function FormRegister({ children }) {
     repeatPassword: null,
   })
 
-  const eventChange = (event) => {
+  const [validForm, setValidForm] = useState({
+    name: false,
+    email: false,
+    password: false,
+    repeatPassword: false,
+  })
+
+  function checkFormValid(element) {
+    const { value, name } = element
+    let validExpression
+
+    if (name === 'email') {
+      validExpression = emailValidation(value)
+      setValidForm({ ...validForm, [name]: validExpression })
+
+      if (!validExpression) {
+        element.classList.add('invalidInput')
+        return
+      }
+      element.classList.remove('invalidInput')
+      return
+    }
+    if (name === 'password' || name === 'repeatPassword') {
+      validExpression = lengthValidation(6, value)
+      setValidForm({ ...validForm, [name]: validExpression })
+
+      if (!validExpression) {
+        element.classList.add('invalidInput')
+        return
+      }
+      element.classList.remove('invalidInput')
+      return
+    }
+    validExpression = lengthValidation(4, value)
+    setValidForm({ ...validForm, [name]: validExpression })
+
+    if (!validExpression) {
+      element.classList.add('invalidInput')
+      return
+    }
+    element.classList.remove('invalidInput')
+  }
+
+  function eventChange(event) {
     const { value, name } = event.target
+    checkFormValid(event.target)
     setDataForm({ ...dataForm, [name]: value })
   }
 
-  const saveUser = async () => {
-    const response = await postUser(dataForm)
-    if (response.mode === 'success') {
-      callback('login')
+  async function saveUser() {
+    const { name, email, password, repeatPassword } = validForm
+    if (!name || !email || !password || !repeatPassword) {
+      console.log('datos incompletos')
+      return
     }
+    if (dataForm.password !== dataForm.repeatPassword) {
+      console.log('las contraseñas no coinciden')
+      return
+    }
+
+    const response = await postUser(dataForm)
+    if (response.mode !== 'success') {
+      console.log(response.message)
+      return
+    }
+
+    callback('login') // render form login
   }
   return (
     <div className="register-form">
@@ -31,7 +92,7 @@ export default function FormRegister({ children }) {
           onChange={eventChange}
           name="name"
           type="text"
-          placeholder="naombre"
+          placeholder="nombre"
         />
         <input
           onChange={eventChange}

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import './Home.scss'
 import { ArrowDownOutlined } from '@ant-design/icons'
 import Luis from '../../assets/jpg/luis2.jpg'
-import { windowScreenMin } from '../../config/helpers'
+import { windowWidthMobil } from '../../config/helpers'
 
 import BackgroundParticles from '../../components/BackgroundParticles'
 
@@ -32,7 +32,7 @@ export default function Home() {
 
       <div className="home-content">
         <div className="home-content-start">
-          {!windowScreenMin() ? (
+          {!windowWidthMobil() ? (
             <div className="home-content-start-welcome">
               <h1 className="home-content-start-welcome-title">
                 Hola, soy Luis Emilio y soy programador web.

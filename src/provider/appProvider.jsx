@@ -1,13 +1,12 @@
 import React, { createContext, useState, useEffect, useMemo } from 'react'
 import jwtDecode from 'jwt-decode'
-import { getProyects } from '../api/proyectsApi'
+import { getProyects, getGitHubProyects } from '../api/proyectsApi'
 
 export const providerApp = createContext()
 export default function appProvider({ children }) {
-  // const userDecode = localStorage.getItem('accesToken')
-
   const [appData, setAppData] = useState({
     dataProyects: null,
+    dataGitHubProyects: null,
     user: {
       name: null,
       email: null,
@@ -17,7 +16,7 @@ export default function appProvider({ children }) {
     },
     comments: null,
   })
-  // use setReload(!reload) to update data from proyects, comments, user...
+
   const [reload, setReload] = useState(false)
 
   function login() {
@@ -33,16 +32,23 @@ export default function appProvider({ children }) {
   }
 
   async function startApp() {
-    const proyects = await getProyects()
+    const dataProyects = await getProyects()
+    const dataGitHubProyects = await getGitHubProyects()
     const accestoken = localStorage.getItem('accesToken')
 
     if (accestoken) {
       const user = jwtDecode(accestoken)
-      setAppData({ ...appData, dataProyects: proyects, user })
+      setAppData({
+        ...appData,
+        dataProyects,
+        user,
+        dataGitHubProyects,
+      })
     } else {
       setAppData({
         ...appData,
-        dataProyects: proyects,
+        dataProyects,
+        dataGitHubProyects,
       })
     }
 
