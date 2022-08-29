@@ -4,8 +4,8 @@ import { providerApp } from '../../../provider/appProvider'
 
 import './FormUpdateProyect.scss'
 
-export default function FormUpdateProyect({ children }) {
-  const { closeModal, proyect } = children
+export default function FormUpdateProyect(props) {
+  const { closeModal, proyect } = props
   const { img, tecnologies, title, description, demo, code, _id } = proyect
   const [dataForm, setDataForm] = useState({
     img,
@@ -57,12 +57,24 @@ export default function FormUpdateProyect({ children }) {
     closeModal(false)
   }
 
+  const itemsInputsTecnologies = inputs.map((element, index) => (
+    <input
+      key={index}
+      id="tecnologies"
+      name={`tecnologie-${index}`}
+      type="text"
+      value={element || ''}
+      onChange={eventChange}
+    />
+  ))
+
   return (
     <div className="updateProyects">
       <h2 className="updateProyects-title">formulario de Ingreso</h2>
 
       <form name="UpdateProyect" className="updateProyects-content">
         <input onChange={eventChange} name="img" type="file" accept="image/*" />
+
         <div className="updateProyects-content-tecnologies">
           <button type="button" onClick={() => setInputs([...inputs, ''])}>
             más
@@ -80,16 +92,9 @@ export default function FormUpdateProyect({ children }) {
           >
             menos
           </button>
-          {inputs.map((i, index) => (
-            <input
-              key={index}
-              name={`tecnologie-${index}`}
-              type="text"
-              value={dataForm.tecnologies[index] || ''}
-              onChange={eventChange}
-            />
-          ))}
+          {itemsInputsTecnologies}
         </div>
+
         <textarea
           onChange={eventChange}
           name="description"
@@ -97,12 +102,15 @@ export default function FormUpdateProyect({ children }) {
           cols="50"
           value={dataForm.description}
         />
+
         <input
           onChange={eventChange}
+          id="title"
           name="title"
           type="text"
           value={dataForm.title}
         />
+
         <input
           onChange={eventChange}
           name="demo"
@@ -118,11 +126,19 @@ export default function FormUpdateProyect({ children }) {
       </form>
 
       <button
-        type="button"
+        type="submit"
         className="updateProyects-button"
         onClick={updateProyect}
       >
         Actualizar
+      </button>
+
+      <button
+        type="button"
+        className="button-danger"
+        onClick={() => closeModal(false)}
+      >
+        cancelar
       </button>
     </div>
   )

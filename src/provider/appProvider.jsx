@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect, useMemo } from 'react'
 import jwtDecode from 'jwt-decode'
-import { getProyects, getGitHubProyects } from '../api/proyectsApi'
+import { getProyects, getGithubProyects } from '../api/proyectsApi'
 
 export const providerApp = createContext()
 export default function appProvider({ children }) {
@@ -33,7 +33,7 @@ export default function appProvider({ children }) {
 
   async function startApp() {
     const dataProyects = await getProyects()
-    const dataGitHubProyects = await getGitHubProyects()
+    const dataGitHubProyects = await getGithubProyects()
     const accestoken = localStorage.getItem('accesToken')
 
     if (accestoken) {
@@ -51,8 +51,6 @@ export default function appProvider({ children }) {
         dataGitHubProyects,
       })
     }
-
-    console.log(appData)
   }
 
   function logOut() {
@@ -71,7 +69,6 @@ export default function appProvider({ children }) {
       logOut,
       login,
     }),
-    // eslint-disable-next-line comma-dangle
     [appData]
   )
 

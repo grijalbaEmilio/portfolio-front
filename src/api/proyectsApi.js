@@ -76,7 +76,28 @@ export async function deleteOneProyect(id) {
   }
 }
 
-export async function getGitHubProyects() {
-  console.log('github proyects')
-  return { p1: 'nn' }
+export async function getGithubProyects() {
+  const respGithubProyectys = await fetch(
+    'https://api.github.com/users/grijalbaEmilio/repos'
+  )
+
+  let githubProyects = await respGithubProyectys.json()
+
+  githubProyects = githubProyects.map((e) => {
+    const { name, language, owner } = e
+    const htmlUrl = e.html_url
+
+    const { login } = owner
+    const avatarUrl = owner.avatar_url
+
+    return {
+      name,
+      htmlUrl,
+      login,
+      avatarUrl,
+      language,
+    }
+  })
+
+  return githubProyects
 }

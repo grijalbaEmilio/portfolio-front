@@ -1,11 +1,10 @@
-/* eslint-disable react/jsx-one-expression-per-line */
 import React, { useContext } from 'react'
 
 import { deleteOneProyect } from '../../../api/proyectsApi'
 import { providerApp } from '../../../provider/appProvider'
 
-export default function FormDeleteProyect({ children }) {
-  const { closeModal, proyect } = children
+export default function FormDeleteProyect(props) {
+  const { closeModal, proyect } = props
   const { reload, setReload } = useContext(providerApp)
 
   async function deleteProyect() {
@@ -19,12 +18,11 @@ export default function FormDeleteProyect({ children }) {
     closeModal(false)
     console.log(resp.message)
   }
+
+  const deleteMessage = `¿ desea borrar ${proyect.title} ?`
   return (
     <div>
-      <h2>
-        ¿ Borrar
-        <i> {proyect.title} </i>?
-      </h2>
+      <h2>{deleteMessage}</h2>
       <button type="button" className="button-danger" onClick={deleteProyect}>
         borrar
       </button>

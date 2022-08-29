@@ -9,6 +9,31 @@ export default function Login() {
   const [optionForm, setOptionform] = useState('login')
   const { appData } = useContext(providerApp)
   const { user } = appData
+
+  function buttonclass(option) {
+    const selected = 'login-page-content-header-button selected'
+    const noSelected = 'login-page-content-header-button'
+    if (optionForm !== option) {
+      return noSelected
+    }
+    return selected
+  }
+
+  function itemsFormLoginRegister() {
+    if (optionForm === 'login') {
+      return (
+        <div className="login-page-content-options-login">
+          <FormLogin />
+        </div>
+      )
+    }
+
+    return (
+      <div className="login-page-content-options-register">
+        <FormRegiser callback={() => setOptionform('login')} />
+      </div>
+    )
+  }
   if (!user.name) {
     return (
       <div className="login-page">
@@ -16,11 +41,7 @@ export default function Login() {
           <div className="login-page-content-header">
             <button
               type="button"
-              className={
-                optionForm === 'login'
-                  ? 'login-page-content-header-button selected'
-                  : 'login-page-content-header-button'
-              }
+              className={buttonclass('login')}
               onClick={() => setOptionform('login')}
             >
               Ingresar
@@ -28,11 +49,7 @@ export default function Login() {
             |
             <button
               type="button"
-              className={
-                optionForm !== 'login'
-                  ? 'login-page-content-header-button selected'
-                  : 'login-page-content-header-button'
-              }
+              className={buttonclass('register')}
               onClick={() => setOptionform('register')}
             >
               Registrarme
@@ -40,15 +57,7 @@ export default function Login() {
           </div>
 
           <div className="login-page-content-options">
-            {optionForm !== 'register' ? (
-              <div className="login-page-content-options-login">
-                <FormLogin />
-              </div>
-            ) : (
-              <div className="login-page-content-options-register">
-                <FormRegiser>{{ callback: setOptionform }}</FormRegiser>
-              </div>
-            )}
+            {itemsFormLoginRegister()}
           </div>
         </div>
       </div>

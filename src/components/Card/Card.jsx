@@ -3,8 +3,9 @@ import { DownOutlined, UpOutlined } from '@ant-design/icons'
 import { windowWidthMobil } from '../../config/helpers'
 import './Card.scss'
 
-export default function Card({ children }) {
-  const { imgUrl, tecnologies, title, description, demo, code } = children
+export default function Card(props) {
+  const { proyect } = props
+  const { imgUrl, tecnologies, title, description, demo, code } = proyect
   const [front, setFront] = useState(false)
   const [vewDescription, setVewDescription] = useState(false)
 
@@ -14,6 +15,31 @@ export default function Card({ children }) {
 
   function upImg() {
     setFront(false)
+  }
+
+  function imgHoverItem() {
+    if (!front) {
+      return <> </>
+    }
+    return (
+      <div className="card-img-front">
+        <div className="card-img-front-tecnologies">
+          {tecnologies.map((element, index) => (
+            <span key={index} className="card-tecnologie">
+              {element}
+            </span>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  function itemDescription() {
+    if (!vewDescription) {
+      return <> </>
+    }
+
+    return <p className="card-content-description">{description}</p>
   }
 
   useEffect(() => {
@@ -26,18 +52,7 @@ export default function Card({ children }) {
     <div className="card">
       <div className="card-img">
         <img className="card-img-background" src={imgUrl} alt="sin imágen" />
-
-        {front ? (
-          <div className="card-img-front">
-            <div className="card-img-front-tecnologies">
-              {tecnologies.map((element, index) => (
-                <span key={index} className="card-tecnologie">
-                  {element}
-                </span>
-              ))}
-            </div>
-          </div>
-        ) : null}
+        {imgHoverItem()}
         <div onMouseOver={hoverImg} onMouseOut={upImg} className="over" />
       </div>
 
@@ -60,9 +75,7 @@ export default function Card({ children }) {
             </>
           )}
         </button>
-        {vewDescription ? (
-          <p className="card-content-description">{description}</p>
-        ) : null}
+        {itemDescription()}
 
         <div className="card-content-buttons">
           <a href={demo} className="card-content-buttons-button">

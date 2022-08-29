@@ -6,8 +6,8 @@ import {
 } from '../../validations/FormValidation'
 import './FormRegister.scss'
 
-export default function FormRegister({ children }) {
-  const { callback } = children
+export default function FormRegister(props) {
+  const { callback } = props
   const [dataForm, setDataForm] = useState({
     name: null,
     email: null,
@@ -81,7 +81,7 @@ export default function FormRegister({ children }) {
       return
     }
 
-    callback('login') // render form login
+    callback() // render form login
   }
   return (
     <div className="register-form">

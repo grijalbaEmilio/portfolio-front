@@ -4,8 +4,8 @@ import { providerApp } from '../../../provider/appProvider'
 
 import './FormCreateProyect.scss'
 
-export default function FormCreateProyect({ children }) {
-  const { closeModal } = children
+export default function FormCreateProyect(props) {
+  const { closeModal } = props
   const [dataForm, setDataForm] = useState({
     img: false,
     tecnologies: [],
@@ -27,7 +27,8 @@ export default function FormCreateProyect({ children }) {
     }
     if (name.startsWith('tecnologie-')) {
       const { tecnologies } = { ...dataForm }
-      tecnologies[name[name.length - 1]] = value
+      const tecnologiPosition = name[name.length - 1]
+      tecnologies[tecnologiPosition] = value
       setDataForm({ ...dataForm, tecnologies })
       return
     }
@@ -57,6 +58,15 @@ export default function FormCreateProyect({ children }) {
     closeModal(false)
   }
 
+  const itemsInputsTecnologies = inputs.map((i, index) => (
+    <input
+      key={index}
+      name={`tecnologie-${index}`}
+      type="text"
+      onChange={eventChange}
+    />
+  ))
+
   return (
     <div className="postProyects">
       <h2 className="postProyects-title">formulario de Ingreso</h2>
@@ -80,14 +90,7 @@ export default function FormCreateProyect({ children }) {
           >
             menos
           </button>
-          {inputs.map((i, index) => (
-            <input
-              key={index}
-              name={`tecnologie-${index}`}
-              type="text"
-              onChange={eventChange}
-            />
-          ))}
+          {itemsInputsTecnologies}
         </div>
         <textarea
           onChange={eventChange}
@@ -122,6 +125,13 @@ export default function FormCreateProyect({ children }) {
         onClick={saveProgram}
       >
         Crear
+      </button>
+      <button
+        type="button"
+        className="button-danger"
+        onClick={() => closeModal(false)}
+      >
+        cancelar
       </button>
     </div>
   )

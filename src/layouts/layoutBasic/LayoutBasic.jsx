@@ -9,7 +9,7 @@ export default function LayoutBasic({ children }) {
 
   return (
     <div>
-      <Menu>{{ user }}</Menu>
+      <Menu user={user} />
       <main>{children}</main>
       <footer>
         <span className="footer-division" />

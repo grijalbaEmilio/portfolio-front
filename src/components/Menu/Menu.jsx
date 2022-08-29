@@ -14,9 +14,8 @@ import { providerApp } from '../../provider/appProvider'
 import Logo from '../../assets/png/logo.png'
 import './Menu.scss'
 
-export default function Menu({ children }) {
-  // children is json
-  const { user } = children
+export default function Menu(props) {
+  const { user } = props
   const { logOut } = useContext(providerApp)
 
   const [optionSelected, setOptionSelected] = useState('home')
@@ -134,7 +133,6 @@ export default function Menu({ children }) {
           setOptionSelected('home')
           logOut()
         }}
-        className={optionSelected === 'login' ? 'option-selected' : null}
       >
         {iconsOptionsMenu().logOut}
       </Link>
@@ -149,7 +147,24 @@ export default function Menu({ children }) {
         </li>
       )
     }
-    return null
+    return <> </>
+  }
+
+  function itemEdit() {
+    if (user.role !== 'admin') {
+      return null
+    }
+    return (
+      <li>
+        <Link
+          to="/admin/edit"
+          onClick={() => setOptionSelected('edit')}
+          className={classItemSelected('edit')}
+        >
+          {iconsOptionsMenu().edit}
+        </Link>
+      </li>
+    )
   }
 
   return (
@@ -157,6 +172,7 @@ export default function Menu({ children }) {
       <div className="menu-content">
         <ul>
           {itemLogo()}
+
           <li>
             <Link
               to="/"
@@ -166,6 +182,7 @@ export default function Menu({ children }) {
               {iconsOptionsMenu().home}
             </Link>
           </li>
+
           <li>
             <Link
               to="/proyects"
@@ -175,17 +192,9 @@ export default function Menu({ children }) {
               {iconsOptionsMenu().proyects}
             </Link>
           </li>
-          {user.role === 'admin' ? (
-            <li>
-              <Link
-                to="/admin/edit"
-                onClick={() => setOptionSelected('edit')}
-                className={classItemSelected('edit')}
-              >
-                {iconsOptionsMenu().edit}
-              </Link>
-            </li>
-          ) : null}
+
+          {itemEdit()}
+
           <li>
             <Link
               to="/about"
@@ -195,6 +204,7 @@ export default function Menu({ children }) {
               {iconsOptionsMenu().curriculum}
             </Link>
           </li>
+
           <li>{itemsLogInLogOut()}</li>
         </ul>
       </div>
