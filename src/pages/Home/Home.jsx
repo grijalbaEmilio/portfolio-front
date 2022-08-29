@@ -1,12 +1,42 @@
-import React, { useEffect } from 'react'
+/* eslint-disable react/jsx-no-bind */
+import React, { useEffect, useContext } from 'react'
 import './Home.scss'
 import { ArrowDownOutlined } from '@ant-design/icons'
 import Luis from '../../assets/jpg/luis2.jpg'
-import { windowWidthMobil } from '../../config/helpers'
+import NewComment from '../../components/NewComment'
+import Comment from '../../components/Comment'
+import { providerApp } from '../../provider/appProvider'
+import List from '../../components/List'
 
 import BackgroundParticles from '../../components/BackgroundParticles'
 
 export default function Home() {
+  const { appData } = useContext(providerApp)
+  const { comments } = appData
+  console.log(comments)
+  function itemsComments(item) {
+    const { content, authotId } = item
+
+    return (
+      <Comment user={authotId}>
+        <h1>{content}</h1>
+      </Comment>
+    )
+  }
+
+  function itemListCommetns() {
+    if (!comments) {
+      return <> cargando comentarios</>
+    }
+    return (
+      <List
+        className="comments-lista"
+        dataSource={comments}
+        renderItem={itemsComments}
+      />
+    )
+  }
+
   const efects = () => {
     document.getElementById('tsparticles').childNodes[0].style.position = null
     const hr = document.querySelector('.home-content-start-hr')
@@ -32,30 +62,17 @@ export default function Home() {
 
       <div className="home-content">
         <div className="home-content-start">
-          {!windowWidthMobil() ? (
-            <div className="home-content-start-welcome">
-              <h1 className="home-content-start-welcome-title">
-                Hola, soy Luis Emilio y soy programador web.
-              </h1>
+          <div className="home-content-start-welcome">
+            <h1 className="home-content-start-welcome-title">
+              Hola, soy Luis Emilio y soy programador web.
+            </h1>
 
-              <img
-                className="home-content-start-welcome-image"
-                src={Luis}
-                alt=""
-              />
-            </div>
-          ) : (
-            <>
-              <h1 className="home-content-start-welcome-title">
-                Hola, soy Luis Emilio y soy programador web.
-              </h1>
-              <img
-                className="home-content-start-welcome-image"
-                src={Luis}
-                alt=""
-              />
-            </>
-          )}
+            <img
+              className="home-content-start-welcome-image"
+              src={Luis}
+              alt=""
+            />
+          </div>
 
           <button type="button" className="home-content-start-contact">
             Contácteme
@@ -74,19 +91,26 @@ export default function Home() {
         </div>
 
         <div className="home-content-continue">
-          <h1>¿ QUIÉN SOY ?</h1>
+          <div>
+            <h1>¿ QUIÉN SOY ?</h1>
 
-          <p>
-            Curso quinto semestre de Ingeniería de Sistemas y computación el la
-            universidad de caldas. Estoy interesado y dispuesto a ser contratado
-            ya sea por una compañía o persona independiente para llevar a cabo
-            retos de desarrollo de software que involucren la creación de
-            proyectos web full Stack.
-          </p>
+            <p>
+              Curso quinto semestre de Ingeniería de Sistemas y computación el
+              la universidad de caldas. Estoy interesado y dispuesto a ser
+              contratado ya sea por una compañía o persona independiente para
+              llevar a cabo retos de desarrollo de software que involucren la
+              creación de proyectos web full Stack.
+            </p>
 
-          <a href={Luis} download="luis">
-            <button type="button"> click pleas</button>
-          </a>
+            <a href={Luis} download="luis">
+              <button type="button"> descarguese algo ahí </button>
+            </a>
+          </div>
+          <div>
+            <h1>Sección de comentarios!</h1>
+            <NewComment submitText="comentar" />
+            {itemListCommetns()}
+          </div>
         </div>
       </div>
     </div>

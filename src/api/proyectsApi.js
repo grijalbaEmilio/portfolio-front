@@ -11,7 +11,7 @@ export async function getProyects() {
 export async function saveOneProyect(bodyForm) {
   const options = {
     method: 'POST',
-    body: bodyForm,
+    body: { content: bodyForm.content, authorId: bodyForm.authorId },
   }
 
   const resp = await fetch(`${BASE_PATH}/proyects/postProyect`, options)

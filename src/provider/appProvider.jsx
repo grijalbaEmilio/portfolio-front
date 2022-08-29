@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect, useMemo } from 'react'
 import jwtDecode from 'jwt-decode'
 import { getProyects, getGithubProyects } from '../api/proyectsApi'
+import { getComments } from '../api/commentsApi'
 
 export const providerApp = createContext()
 export default function appProvider({ children }) {
@@ -34,6 +35,7 @@ export default function appProvider({ children }) {
   async function startApp() {
     const dataProyects = await getProyects()
     const dataGitHubProyects = await getGithubProyects()
+    const comments = await getComments()
     const accestoken = localStorage.getItem('accesToken')
 
     if (accestoken) {
@@ -43,12 +45,14 @@ export default function appProvider({ children }) {
         dataProyects,
         user,
         dataGitHubProyects,
+        comments,
       })
     } else {
       setAppData({
         ...appData,
         dataProyects,
         dataGitHubProyects,
+        comments,
       })
     }
   }
