@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React from 'react'
 import NodeComment from './NodeComment'
-import Comment from '../components/Comment'
+import Comment from '../Comment'
 
 // const NodeComment = require('./NodeComment')
 
@@ -71,22 +71,30 @@ class TreeComments {
 
     return newString
   }
+  // TODO: good practiced need to do implements
 
-  nn(actualNode = this.#root) {
+  nn(actualNode = this.#root, num = 1) {
     const { id, content, author } = actualNode.getValue()
     const { name } = author
-    if (actualNode.getChindren().length === 0) {
-      return content
+    const children = actualNode.getChindren()
+
+    if (!children || num === 5) {
+      return <> </>
+    }
+    // console.log(content)
+
+    const childContent = () => {
+      const vai = []
+      children.forEach((element, index) => {
+        const e = <div key={index}>{this.nn(element)}</div>
+        vai.push(e)
+      })
+      return vai
     }
 
     return (
-      <Comment author={name} id={id}>
-        {content}
-        {actualNode.getChindren().map((e, i) => (
-          <Comment key={i} author={name} id={id}>
-            {this.nn(e)}
-          </Comment>
-        ))}
+      <Comment author={name} id={id} content={content}>
+        {childContent()}
       </Comment>
     )
   }

@@ -12,7 +12,7 @@ export default function NewComment(props) {
 
   function changeEvent(event) {
     const { value } = event.target
-    const dataForm = { content: value, authorId: user.id }
+    const dataForm = { content: value, authorId: user.id, parentId }
     setCommetn(dataForm)
   }
 
@@ -22,7 +22,7 @@ export default function NewComment(props) {
     }
     if (!comment) {
       console.log(parentId)
-      console.log('imposible enviar')
+      console.log('imposible enviar comentario vacío')
       return
     }
     const { message, mode } = await postComment(comment)

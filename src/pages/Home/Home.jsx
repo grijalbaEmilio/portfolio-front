@@ -4,10 +4,8 @@ import './Home.scss'
 import { ArrowDownOutlined } from '@ant-design/icons'
 import Luis from '../../assets/jpg/luis2.jpg'
 import NewComment from '../../components/NewComment'
-// import Comment from '../../components/Comment'
 import { providerApp } from '../../provider/appProvider'
-// import List from '../../components/List'
-import TreeComments from '../../class/TreeComments'
+import TreeComments from '../../components/TreeComments'
 
 import BackgroundParticles from '../../components/BackgroundParticles'
 
@@ -29,18 +27,30 @@ export default function Home() {
     if (!comments || comments.length === 0) {
       return <> cargando comentarios... </>
     }
-    const tree = new TreeComments(comments[0])
+    const commentsRoot = comments.filter((comment) => !comment.parent)
+
+    const itemsComments = commentsRoot.map((itemRoot, index) => {
+      const tree = new TreeComments(itemRoot)
+      comments.forEach((comment) => {
+        if (!comment.parent) {
+          return
+        }
+        tree.addNodeComment(comment)
+      })
+      return <div key={index}>{tree.nn()}</div>
+    })
+    /* const tree = new TreeComments(comments[0])
     comments.forEach((comment) => {
       if (!comment.parent) {
         return
       }
       tree.addNodeComment(comment)
-    })
+    }) */
     // console.log(tree.visitComments())
 
     return (
       <>
-        {tree.nn()}
+        {itemsComments}
         {/* <List
           className="comments-lista"
           dataSource={comments}
