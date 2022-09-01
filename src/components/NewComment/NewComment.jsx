@@ -4,7 +4,7 @@ import { postComment } from '../../api/commentsApi'
 import { providerApp } from '../../provider/appProvider'
 
 export default function NewComment(props) {
-  const { submitText, closeComponent } = props
+  const { submitText, closeComponent, parentId } = props
   const { appData, setReload, reload } = useContext(providerApp)
   const { user } = appData
 
@@ -21,6 +21,7 @@ export default function NewComment(props) {
       throw new Error('no hay usuario en el sistema')
     }
     if (!comment) {
+      console.log(parentId)
       console.log('imposible enviar')
       return
     }

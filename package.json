@@ -23,6 +23,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "testClass": "node src/config/testClassTree",
     "eject": "react-scripts eject",
     "lint": "eslint src/",
     "lint-fix": "eslint src/ --fix"

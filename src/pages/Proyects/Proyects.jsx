@@ -60,6 +60,7 @@ export default function Proyects() {
     if (!dataGitHubProyects) {
       return <div> Cargando Proyectos </div>
     }
+
     return (
       <List
         className="proyects-github-list"

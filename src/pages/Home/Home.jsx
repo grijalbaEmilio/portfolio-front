@@ -4,36 +4,49 @@ import './Home.scss'
 import { ArrowDownOutlined } from '@ant-design/icons'
 import Luis from '../../assets/jpg/luis2.jpg'
 import NewComment from '../../components/NewComment'
-import Comment from '../../components/Comment'
+// import Comment from '../../components/Comment'
 import { providerApp } from '../../provider/appProvider'
-import List from '../../components/List'
+// import List from '../../components/List'
+import TreeComments from '../../class/TreeComments'
 
 import BackgroundParticles from '../../components/BackgroundParticles'
 
 export default function Home() {
   const { appData } = useContext(providerApp)
   const { comments } = appData
-  console.log(comments)
-  function itemsComments(item) {
-    const { content, authotId } = item
 
+  /*  function itemsComments(item) {
+    const { content, author } = item
+    const { name } = author
     return (
-      <Comment user={authotId}>
+      <Comment author={name}>
         <h1>{content}</h1>
       </Comment>
     )
-  }
+  } */
 
   function itemListCommetns() {
-    if (!comments) {
-      return <> cargando comentarios</>
+    if (!comments || comments.length === 0) {
+      return <> cargando comentarios... </>
     }
+    const tree = new TreeComments(comments[0])
+    comments.forEach((comment) => {
+      if (!comment.parent) {
+        return
+      }
+      tree.addNodeComment(comment)
+    })
+    // console.log(tree.visitComments())
+
     return (
-      <List
-        className="comments-lista"
-        dataSource={comments}
-        renderItem={itemsComments}
-      />
+      <>
+        {tree.nn()}
+        {/* <List
+          className="comments-lista"
+          dataSource={comments}
+          renderItem={itemsComments}
+        /> */}
+      </>
     )
   }
 
@@ -53,7 +66,7 @@ export default function Home() {
     return () => {
       window.removeEventListener('scroll', efects)
     }
-  }, [])
+  }, [comments])
 
   return (
     <div className="home">

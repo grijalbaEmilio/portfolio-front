@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { BASE_PATH } from './config'
 
 export async function postComment(comment) {
@@ -23,8 +24,31 @@ export async function postComment(comment) {
 }
 
 export async function getComments() {
-  const comments = await fetch(`${BASE_PATH}/comments/getComments`)
-  const allComments = await comments.json()
+  const comments = await (
+    await fetch(`${BASE_PATH}/comments/getComments`)
+  ).json()
 
-  return allComments
+  const ff = await comments.reduce(async (acc, comment) => {
+    const { authorUrl, parentUrl, content, likes, _id } = comment
+    let finalParent
+    let finalAuthor
+
+    if (!parentUrl) {
+      finalParent = null
+      const author = await (await fetch(authorUrl)).json()
+      finalAuthor = { name: author.name, email: author.email }
+    } else {
+      const parent = await (await fetch(parentUrl)).json()
+      finalParent = { id: parent._id }
+      const author = await (await fetch(authorUrl)).json()
+      finalAuthor = { name: author.name, email: author.email }
+    }
+
+    return [
+      ...(await acc),
+      { author: finalAuthor, parent: finalParent, content, likes, id: _id },
+    ]
+  }, [])
+
+  return ff
 }

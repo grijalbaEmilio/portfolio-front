@@ -3,7 +3,7 @@ import NewComment from '../NewComment'
 import './Comment.scss'
 
 export default function Comment(props) {
-  const { authorId, children } = props
+  const { author, id, children } = props
   const [respond, setRespond] = useState(false)
 
   function itemRespond() {
@@ -12,6 +12,7 @@ export default function Comment(props) {
     }
     return (
       <NewComment
+        parentId={id}
         closeComponent={() => setRespond(false)}
         submitText="Responder"
       />
@@ -19,12 +20,13 @@ export default function Comment(props) {
   }
   return (
     <div>
-      {authorId}
+      {author}
       {children}
       <button type="button" onClick={() => setRespond(true)}>
         resposder
       </button>
       {itemRespond()}
+      <div className="responses">{null}</div>
     </div>
   )
 }

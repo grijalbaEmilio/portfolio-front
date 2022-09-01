@@ -38,21 +38,23 @@ export default function appProvider({ children }) {
     const comments = await getComments()
     const accestoken = localStorage.getItem('accesToken')
 
+    console.log(comments.length)
+
     if (accestoken) {
       const user = jwtDecode(accestoken)
       setAppData({
         ...appData,
+        comments,
         dataProyects,
         user,
         dataGitHubProyects,
-        comments,
       })
     } else {
       setAppData({
         ...appData,
+        comments,
         dataProyects,
         dataGitHubProyects,
-        comments,
       })
     }
   }
