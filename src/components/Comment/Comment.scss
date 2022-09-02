@@ -1,5 +1,7 @@
 @import '../../scss/index.scss';
 
-.responses {
-  margin-left: 30px;
+.comment {
+  &-responses {
+    margin-left: 40px;
+  }
 }

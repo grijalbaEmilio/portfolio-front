@@ -11,7 +11,7 @@ export default function Comment(props) {
     if (!responses) {
       return <> </>
     }
-    return <div className="responses">{children}</div>
+    return <div className="comment-responses">{children}</div>
   }
 
   function itemRespond() {
@@ -27,9 +27,9 @@ export default function Comment(props) {
     )
   }
   return (
-    <div>
-      {author}
-      {content}
+    <div className="comment">
+      <h2 className="comment-content">{content}</h2>
+      <h5 className="comment-author">{author}</h5>
       <button type="button" onClick={() => setRespond(true)}>
         resposder
       </button>

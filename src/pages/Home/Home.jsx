@@ -13,51 +13,25 @@ export default function Home() {
   const { appData } = useContext(providerApp)
   const { comments } = appData
 
-  /*  function itemsComments(item) {
-    const { content, author } = item
-    const { name } = author
-    return (
-      <Comment author={name}>
-        <h1>{content}</h1>
-      </Comment>
-    )
-  } */
-
   function itemListCommetns() {
     if (!comments || comments.length === 0) {
       return <> cargando comentarios... </>
     }
-    const commentsRoot = comments.filter((comment) => !comment.parent)
 
-    const itemsComments = commentsRoot.map((itemRoot, index) => {
-      const tree = new TreeComments(itemRoot)
+    const commentsRoot = comments.filter((comment) => !comment.parent).reverse()
+
+    const itemsComments = commentsRoot.map((commentRoot, index) => {
+      const tree = new TreeComments(commentRoot)
       comments.forEach((comment) => {
         if (!comment.parent) {
           return
         }
         tree.addNodeComment(comment)
       })
-      return <div key={index}>{tree.nn()}</div>
+      return <div key={index}>{tree.generateComponentTreeComments()}</div>
     })
-    /* const tree = new TreeComments(comments[0])
-    comments.forEach((comment) => {
-      if (!comment.parent) {
-        return
-      }
-      tree.addNodeComment(comment)
-    }) */
-    // console.log(tree.visitComments())
 
-    return (
-      <>
-        {itemsComments}
-        {/* <List
-          className="comments-lista"
-          dataSource={comments}
-          renderItem={itemsComments}
-        /> */}
-      </>
-    )
+    return <div>{itemsComments}</div>
   }
 
   const efects = () => {

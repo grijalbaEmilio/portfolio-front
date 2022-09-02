@@ -27,9 +27,9 @@ class NodeComment {
    * @param {NodeComment} newChild
    */
   newchild(newChild) {
-    this.#children.push(newChild)
+    // most recent comment at the begining
+    this.#children = [newChild, ...this.#children]
   }
 }
 
-// module.exports = NodeComment
 export default NodeComment
