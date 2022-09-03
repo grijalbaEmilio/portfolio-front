@@ -28,8 +28,8 @@ export async function getComments() {
     await fetch(`${BASE_PATH}/comments/getComments`)
   ).json()
 
-  const ff = await comments.reduce(async (acc, comment) => {
-    const { authorUrl, parentUrl, content, likes, _id } = comment
+  const commentsFinal = await comments.reduce(async (acc, comment) => {
+    const { authorUrl, parentUrl, content, likes, _id, postDate } = comment
     let finalParent
     let finalAuthor
 
@@ -46,9 +46,16 @@ export async function getComments() {
 
     return [
       ...(await acc),
-      { author: finalAuthor, parent: finalParent, content, likes, id: _id },
+      {
+        author: finalAuthor,
+        parent: finalParent,
+        content,
+        likes,
+        id: _id,
+        postDate,
+      },
     ]
   }, [])
 
-  return ff
+  return commentsFinal
 }

@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import NewComment from '../NewComment'
+import { dateFormat } from '../../config/helpers'
 import './Comment.scss'
 
 export default function Comment(props) {
-  const { author, id, children, content } = props
+  const { author, id, children, content, postDate } = props
   const [respond, setRespond] = useState(false)
   const [responses, setResponses] = useState(false)
 
@@ -30,6 +31,7 @@ export default function Comment(props) {
     <div className="comment">
       <h2 className="comment-content">{content}</h2>
       <h5 className="comment-author">{author}</h5>
+      <p>{dateFormat(postDate)}</p>
       <button type="button" onClick={() => setRespond(true)}>
         resposder
       </button>

@@ -21,7 +21,6 @@ export default function NewComment(props) {
       throw new Error('no hay usuario en el sistema')
     }
     if (!comment) {
-      console.log(parentId)
       console.log('imposible enviar comentario vacío')
       return
     }

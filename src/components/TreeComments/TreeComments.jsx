@@ -53,7 +53,7 @@ class TreeComments {
 
   generateComponentTreeComments(actualNode = this.#root) {
     const comment = actualNode.getValue()
-    const { id, content, author } = comment
+    const { id, content, author, postDate } = comment
     const { name } = author
     const children = actualNode.getChindren()
 
@@ -73,7 +73,7 @@ class TreeComments {
     }
 
     return (
-      <Comment author={name} id={id} content={content}>
+      <Comment author={name} id={id} content={content} postDate={postDate}>
         {commentContent()}
       </Comment>
     )

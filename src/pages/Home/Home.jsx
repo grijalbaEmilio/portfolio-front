@@ -104,6 +104,58 @@ export default function Home() {
             </a>
           </div>
           <div>
+            <h1>¿ Qué se hacer?</h1>
+            <div className="cv-right-languages">
+              <ul>
+                <li>
+                  <p> JavaScript </p>
+                </li>
+                <li>
+                  <p> Java </p>
+                </li>
+                <li>
+                  <p> Python </p>
+                </li>
+                <li>
+                  <p> HTML5 </p>
+                </li>
+                <li>
+                  <p> CSS3 </p>
+                </li>
+                <li>
+                  <p> Tailwind </p>
+                </li>
+                <li>
+                  <p> Bootstrap </p>
+                </li>
+              </ul>
+
+              <ul>
+                <li>
+                  <p> Node.js </p>
+                </li>
+                <li>
+                  <p> React </p>
+                </li>
+                <li>
+                  <p> Vue </p>
+                </li>
+                <li>
+                  <p> Express </p>
+                </li>
+                <li>
+                  <p> Flask </p>
+                </li>
+                <li>
+                  <p> MongoDB </p>
+                </li>
+                <li>
+                  <p> SQL Server </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div>
             <h1>Sección de comentarios!</h1>
             <NewComment submitText="comentar" />
             {itemListCommetns()}

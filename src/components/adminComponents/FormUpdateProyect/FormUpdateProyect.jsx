@@ -23,6 +23,7 @@ export default function FormUpdateProyect(props) {
 
   const eventChange = (event) => {
     const { value, name } = event.target
+
     if (name === 'img') {
       setDataForm({ ...dataForm, [name]: event.target.files[0] })
       return
@@ -60,10 +61,9 @@ export default function FormUpdateProyect(props) {
   const itemsInputsTecnologies = inputs.map((element, index) => (
     <input
       key={index}
-      id="tecnologies"
       name={`tecnologie-${index}`}
       type="text"
-      value={element || ''}
+      defaultValue={element || ''}
       onChange={eventChange}
     />
   ))
@@ -76,7 +76,7 @@ export default function FormUpdateProyect(props) {
         <input onChange={eventChange} name="img" type="file" accept="image/*" />
 
         <div className="updateProyects-content-tecnologies">
-          <button type="button" onClick={() => setInputs([...inputs, ''])}>
+          <button type="button" onClick={() => setInputs([...inputs, 0])}>
             más
           </button>
           <button
