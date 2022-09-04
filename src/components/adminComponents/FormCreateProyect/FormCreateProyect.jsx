@@ -42,6 +42,7 @@ export default function FormCreateProyect(props) {
       console.log('incomplete data')
       return
     }
+
     formData.append('img', img)
     formData.append('tecnologies', JSON.stringify(tecnologies))
     formData.append('description', description)

@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react'
 import FormLogin from '../../components/FormLogin'
 import FormRegiser from '../../components/FormRegister'
 import { providerApp } from '../../provider/appProvider'
-import Home from '../Home'
 import './Login.scss'
 
 export default function Login() {
@@ -34,34 +33,34 @@ export default function Login() {
       </div>
     )
   }
-  if (!user.name) {
-    return (
-      <div className="login-page">
-        <div className="login-page-content">
-          <div className="login-page-content-header">
-            <button
-              type="button"
-              className={buttonclass('login')}
-              onClick={() => setOptionform('login')}
-            >
-              Ingresar
-            </button>
-            |
-            <button
-              type="button"
-              className={buttonclass('register')}
-              onClick={() => setOptionform('register')}
-            >
-              Registrarme
-            </button>
-          </div>
+  if (user.name) {
+    window.location.replace('/')
+  }
+  return (
+    <div className="login-page">
+      <div className="login-page-content">
+        <div className="login-page-content-header">
+          <button
+            type="button"
+            className={buttonclass('login')}
+            onClick={() => setOptionform('login')}
+          >
+            Ingresar
+          </button>
+          |
+          <button
+            type="button"
+            className={buttonclass('register')}
+            onClick={() => setOptionform('register')}
+          >
+            Registrarme
+          </button>
+        </div>
 
-          <div className="login-page-content-options">
-            {itemsFormLoginRegister()}
-          </div>
+        <div className="login-page-content-options">
+          {itemsFormLoginRegister()}
         </div>
       </div>
-    )
-  }
-  return <Home />
+    </div>
+  )
 }

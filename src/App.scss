@@ -4,10 +4,6 @@ body {
   margin: 0;
 }
 
-canvas {
-  position: absolute !important;
-}
-
 .invalidInput {
   background-color: $invalid-input !important;
 }

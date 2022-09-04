@@ -6,6 +6,7 @@ import Luis from '../../assets/jpg/luis2.jpg'
 import NewComment from '../../components/NewComment'
 import { providerApp } from '../../provider/appProvider'
 import TreeComments from '../../components/TreeComments'
+import { windowWidthMobil } from '../../config/helpers'
 
 import BackgroundParticles from '../../components/BackgroundParticles'
 
@@ -36,11 +37,11 @@ export default function Home() {
 
   const efects = () => {
     document.getElementById('tsparticles').childNodes[0].style.position = null
-    const hr = document.querySelector('.home-content-start-hr')
+    const hr = document.querySelector('.home-division')
     if (window.scrollY > 5) {
-      hr.classList.add('background-hr')
+      hr.classList.add('background-division')
     } else {
-      hr.classList.remove('background-hr')
+      hr.classList.remove('background-division')
     }
   }
 
@@ -54,112 +55,111 @@ export default function Home() {
 
   return (
     <div className="home">
-      <div className="home-backgroud-image" />
-      <BackgroundParticles />
+      <div className="home-start">
+        <BackgroundParticles />
+        <div className="home-start-welcome">
+          <h1 className="home-start-welcome-title">
+            Hola, soy Luis Emilio y soy programador web.
+          </h1>
 
-      <div className="home-content">
-        <div className="home-content-start">
-          <div className="home-content-start-welcome">
-            <h1 className="home-content-start-welcome-title">
-              Hola, soy Luis Emilio y soy programador web.
-            </h1>
-
-            <img
-              className="home-content-start-welcome-image"
-              src={Luis}
-              alt=""
-            />
-          </div>
-
-          <button type="button" className="home-content-start-contact">
-            Contácteme
-          </button>
-
-          {window.screen.width < 900 ? (
-            <ArrowDownOutlined className="home-content-start-arrow" />
-          ) : (
-            <div className="home-content-start-arrows">
-              <ArrowDownOutlined className="home-content-start-arrow" />
-              <ArrowDownOutlined className="home-content-start-arrow" />
-            </div>
-          )}
-
-          <div className="home-content-start-hr" />
+          <img className="home-start-welcome-image" src={Luis} alt="" />
         </div>
 
-        <div className="home-content-continue">
-          <div>
-            <h1>¿ QUIÉN SOY ?</h1>
+        <a href="#contactMe">
+          <button type="button" className="home-start-contact">
+            Contácteme
+          </button>
+        </a>
 
-            <p>
-              Curso quinto semestre de Ingeniería de Sistemas y computación el
-              la universidad de caldas. Estoy interesado y dispuesto a ser
-              contratado ya sea por una compañía o persona independiente para
-              llevar a cabo retos de desarrollo de software que involucren la
-              creación de proyectos web full Stack.
-            </p>
+        {windowWidthMobil() ? (
+          <ArrowDownOutlined className="home-start-arrow" />
+        ) : (
+          <div className="home-start-arrows">
+            <ArrowDownOutlined className="home-start-arrow" />
+            <ArrowDownOutlined className="home-start-arrow" />
+          </div>
+        )}
+      </div>
+      <div className="home-division" />
+      <div className="home-continue">
+        <div>
+          <h1>¿ QUIÉN SOY ?</h1>
 
-            <a href={Luis} download="luis">
-              <button type="button"> descarguese algo ahí </button>
-            </a>
-          </div>
-          <div>
-            <h1>¿ Qué se hacer?</h1>
-            <div className="cv-right-languages">
-              <ul>
-                <li>
-                  <p> JavaScript </p>
-                </li>
-                <li>
-                  <p> Java </p>
-                </li>
-                <li>
-                  <p> Python </p>
-                </li>
-                <li>
-                  <p> HTML5 </p>
-                </li>
-                <li>
-                  <p> CSS3 </p>
-                </li>
-                <li>
-                  <p> Tailwind </p>
-                </li>
-                <li>
-                  <p> Bootstrap </p>
-                </li>
-              </ul>
+          <p>
+            Curso quinto semestre de Ingeniería de Sistemas y computación el la
+            universidad de caldas. Estoy interesado y dispuesto a ser contratado
+            ya sea por una compañía o persona independiente para llevar a cabo
+            retos de desarrollo de software que involucren la creación de
+            proyectos web full Stack.
+          </p>
 
-              <ul>
-                <li>
-                  <p> Node.js </p>
-                </li>
-                <li>
-                  <p> React </p>
-                </li>
-                <li>
-                  <p> Vue </p>
-                </li>
-                <li>
-                  <p> Express </p>
-                </li>
-                <li>
-                  <p> Flask </p>
-                </li>
-                <li>
-                  <p> MongoDB </p>
-                </li>
-                <li>
-                  <p> SQL Server </p>
-                </li>
-              </ul>
-            </div>
+          <a href={Luis} download="luis">
+            <button type="button"> descarguese algo ahí </button>
+          </a>
+        </div>
+        <div>
+          <h1>¿ Qué se hacer?</h1>
+          <div className="cv-right-languages">
+            <ul>
+              <li>
+                <p> JavaScript </p>
+              </li>
+              <li>
+                <p> Java </p>
+              </li>
+              <li>
+                <p> Python </p>
+              </li>
+              <li>
+                <p> HTML5 </p>
+              </li>
+              <li>
+                <p> CSS3 </p>
+              </li>
+              <li>
+                <p> Tailwind </p>
+              </li>
+              <li>
+                <p> Bootstrap </p>
+              </li>
+            </ul>
+
+            <ul>
+              <li>
+                <p> Node.js </p>
+              </li>
+              <li>
+                <p> React </p>
+              </li>
+              <li>
+                <p> Vue </p>
+              </li>
+              <li>
+                <p> Express </p>
+              </li>
+              <li>
+                <p> Flask </p>
+              </li>
+              <li>
+                <p> MongoDB </p>
+              </li>
+              <li>
+                <p> SQL Server </p>
+              </li>
+            </ul>
           </div>
-          <div>
-            <h1>Sección de comentarios!</h1>
-            <NewComment submitText="comentar" />
-            {itemListCommetns()}
-          </div>
+        </div>
+        <div id="contactMe">
+          <h1> ¿ Cómo puede contactarme ?</h1>
+          <ul>
+            <li>email</li>
+            <li>linkedin</li>
+          </ul>
+        </div>
+        <div>
+          <h1>Sección de comentarios!</h1>
+          <NewComment submitText="comentar" />
+          {itemListCommetns()}
         </div>
       </div>
     </div>

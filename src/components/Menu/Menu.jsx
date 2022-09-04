@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-bind */
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 import {
   HomeFilled,
   FolderOpenFilled,
@@ -17,8 +17,6 @@ import './Menu.scss'
 export default function Menu(props) {
   const { user } = props
   const { logOut } = useContext(providerApp)
-
-  const [optionSelected, setOptionSelected] = useState('home')
 
   useEffect(() => {
     let previusScrollY = 0
@@ -106,10 +104,12 @@ export default function Menu(props) {
   }
 
   function classItemSelected(option) {
+    const windowPath = window.location.pathname
+
     if (windowWidthMobil()) {
-      return optionSelected === option ? 'option-selected-mobil' : null
+      return windowPath === option ? 'option-selected-mobil' : null
     }
-    return optionSelected === option ? 'option-selected-laptop' : null
+    return windowPath === option ? 'option-selected-laptop' : null
   }
 
   function itemsLogInLogOut() {
@@ -117,11 +117,7 @@ export default function Menu(props) {
 
     if (!name) {
       return (
-        <Link
-          to="/login"
-          onClick={() => setOptionSelected('login')}
-          className={classItemSelected('login')}
-        >
+        <Link to="/login" className={classItemSelected('/login')}>
           {iconsOptionsMenu().logIn}
         </Link>
       )
@@ -130,7 +126,6 @@ export default function Menu(props) {
       <Link
         to="/"
         onClick={() => {
-          setOptionSelected('home')
           logOut()
         }}
       >
@@ -156,11 +151,7 @@ export default function Menu(props) {
     }
     return (
       <li>
-        <Link
-          to="/admin/edit"
-          onClick={() => setOptionSelected('edit')}
-          className={classItemSelected('edit')}
-        >
+        <Link to="/admin/edit" className={classItemSelected('/admin/edit')}>
           {iconsOptionsMenu().edit}
         </Link>
       </li>
@@ -174,21 +165,13 @@ export default function Menu(props) {
           {itemLogo()}
 
           <li>
-            <Link
-              to="/"
-              onClick={() => setOptionSelected('home')}
-              className={classItemSelected('home')}
-            >
+            <Link to="/" className={classItemSelected('/')}>
               {iconsOptionsMenu().home}
             </Link>
           </li>
 
           <li>
-            <Link
-              to="/proyects"
-              onClick={() => setOptionSelected('proyects')}
-              className={classItemSelected('proyects')}
-            >
+            <Link to="/proyects" className={classItemSelected('/proyects')}>
               {iconsOptionsMenu().proyects}
             </Link>
           </li>
@@ -196,11 +179,7 @@ export default function Menu(props) {
           {itemEdit()}
 
           <li>
-            <Link
-              to="/about"
-              onClick={() => setOptionSelected('about')}
-              className={classItemSelected('about')}
-            >
+            <Link to="/about" className={classItemSelected('/about')}>
               {iconsOptionsMenu().curriculum}
             </Link>
           </li>

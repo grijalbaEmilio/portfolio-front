@@ -5,13 +5,13 @@
 }
 
 .login-page {
-  min-height: 90vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   background-image: url('../../assets/jpg/simple.jpg');
+  padding: 100px 0 0 0;
 
   &-content {
-    margin-top: 150px;
     background-color: #8080804d;
     padding: 10px;
     height: min-content;
@@ -28,13 +28,6 @@
 
 @media (min-width: 900px) {
   .login-page {
-    padding: 100px 0 0 0;
-    padding: 0 $padding-900;
-  }
-}
-
-@media (min-width: 1240px) {
-  .login-page {
-    padding: 0 $padding-1240;
+    padding: 200px 0 0 0;
   }
 }

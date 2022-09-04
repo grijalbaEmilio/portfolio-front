@@ -11,9 +11,9 @@ export default function LayoutBasic({ children }) {
     <div>
       <Menu user={user} />
       <main>{children}</main>
-      <footer>
+      <footer className="footer">
         <span className="footer-division" />
-        footer
+        <p className="footer-content">footer</p>
       </footer>
     </div>
   )

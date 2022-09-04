@@ -105,22 +105,20 @@
   .background-menu {
     background-color: $secondary-color !important;
     box-shadow: gray 2px 0 4px 0;
-    backdrop-filter: blur(10px);
   }
 
   .menu {
     &-content {
       top: 0;
       bottom: auto;
-      padding: 0 $padding-900;
+      padding: 0px $padding-900;
       height: 100px;
-      animation: height;
       background-color: transparent;
+      align-items: end;
 
       & > ul {
         justify-content: space-between;
         & > li {
-          margin: 0 20px;
           &:nth-child(1) {
             margin: 0 20% 0 0;
           }
