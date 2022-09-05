@@ -1,1 +1,46 @@
 @import '../../scss/index.scss';
+
+.new-comment {
+  width: auto;
+  border-top: 1px black;
+  border-top-style: dashed;
+  border-bottom: 1px black;
+  border-bottom-style: dashed;
+  padding: 10px 5px;
+  margin: 20px 0;
+  &-input {
+    width: calc(100% - 2rem - 8px);
+    padding: 0.5rem 1rem;
+    margin: 0 0 5px 0;
+    border: none;
+    border: 4px solid #ffffff;
+    border-radius: 2rem;
+    background-color: #ffffff;
+    color: $color-font-light;
+
+    &:focus {
+      border-color: $primary-color;
+    }
+  }
+
+  &-buttons {
+    &-button {
+      width: 100%;
+      margin: 5px 0;
+    }
+  }
+}
+
+@media (min-width: 900px) {
+  .new-comment {
+    &-buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      &-button {
+        width: 49%;
+      }
+    }
+  }
+}

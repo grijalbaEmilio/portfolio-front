@@ -1,8 +1,9 @@
 @import '../../scss/index.scss';
 
 .luis-logo {
-  height: 30px;
-  margin: auto;
+  height: 34px;
+  border-radius: 2rem;
+  width: 150px;
 }
 
 .option-selected-mobil {
@@ -64,6 +65,7 @@
       flex-direction: row;
       list-style: none;
       justify-content: space-around;
+      align-items: flex-end;
       width: 100%;
       margin: 0;
       padding: 0;
@@ -82,7 +84,6 @@
           flex-direction: column;
           text-decoration: none;
           color: $primary-color;
-          font-size: 1.4rem;
           width: 100%;
           height: 100%;
           padding: 8px 0 5px 0;
@@ -120,8 +121,15 @@
       & > ul {
         justify-content: space-between;
         & > li {
+          justify-content: end;
           &:nth-child(1) {
             margin: 0 20% 0 0;
+            justify-content: start;
+            position: relative;
+
+            & > a {
+              width: min-content;
+            }
           }
 
           &:nth-last-child(1) {

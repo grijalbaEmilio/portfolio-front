@@ -175,7 +175,7 @@ export default function Home() {
             ¡ DEJA UN COMENTARIO !
           </h1>
           <NewComment submitText="comentar" />
-          <div className="home-continue-comments-contetn">
+          <div className="home-continue-comments-content">
             {itemListCommetns()}
           </div>
         </div>

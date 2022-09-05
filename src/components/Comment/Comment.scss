@@ -1,7 +1,34 @@
 @import '../../scss/index.scss';
 
 .comment {
+  background-color: #74919e63;
+  border-radius: 30px;
+  padding: 10px;
+  margin: 20px 10px;
+
+  &-author {
+    font-size: 1.3rem;
+  }
+
+  &-buttons {
+    display: flex;
+    flex-direction: column;
+  }
+
   &-responses {
-    margin-left: 40px;
+    border-left: 1px dashed black;
+    padding-left: 10px;
+  }
+}
+
+@media (min-width: 900px) {
+  .comment {
+    &-buttons {
+      flex-direction: row;
+      justify-content: space-between;
+      &-button {
+        width: 49%;
+      }
+    }
   }
 }

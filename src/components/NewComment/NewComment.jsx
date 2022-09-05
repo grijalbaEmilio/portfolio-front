@@ -18,7 +18,8 @@ export default function NewComment(props) {
 
   async function submitForm() {
     if (!user.name) {
-      throw new Error('no hay usuario en el sistema')
+      alert('¡ debe estar logueado para comentar !')
+      window.location.replace('/login')
     }
     if (!comment) {
       console.log('imposible enviar comentario vacío')
@@ -30,34 +31,56 @@ export default function NewComment(props) {
       console.log(message)
       return
     }
-    console.log('posteado')
     setReload(!reload)
+    document.getElementById('newComment').value = ''
+
+    if (submitText === 'Responder') {
+      closeComponent()
+    }
   }
 
   function itemsButtons() {
     if (submitText !== 'comentar') {
       return (
-        <>
-          <button type="button" onClick={closeComponent}>
-            cancelar
+        <div className="new-comment-buttons">
+          <button
+            className="new-comment-buttons-button"
+            type="button"
+            onClick={closeComponent}
+          >
+            Cancelar
           </button>
-          <button type="button" onClick={submitForm}>
+          <button
+            className="new-comment-buttons-button"
+            type="button"
+            onClick={submitForm}
+          >
             {submitText}
           </button>
-        </>
+        </div>
       )
     }
 
     return (
-      <button type="button" onClick={submitForm}>
+      <button
+        className="new-comment-buttons-button"
+        type="button"
+        onClick={submitForm}
+      >
         {submitText}
       </button>
     )
   }
 
   return (
-    <div>
-      <input onChange={changeEvent} type="text" />
+    <div className="new-comment">
+      <input
+        onChange={changeEvent}
+        id="newComment"
+        type="text"
+        placeholder="Escribe un comentario..."
+        className="new-comment-input"
+      />
       <div>{itemsButtons()}</div>
     </div>
   )

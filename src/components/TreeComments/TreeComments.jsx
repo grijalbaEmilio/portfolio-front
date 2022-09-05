@@ -73,7 +73,13 @@ class TreeComments {
     }
 
     return (
-      <Comment author={name} id={id} content={content} postDate={postDate}>
+      <Comment
+        author={name}
+        id={id}
+        content={content}
+        postDate={postDate}
+        numResponses={children.length}
+      >
         {commentContent()}
       </Comment>
     )
