@@ -19,7 +19,8 @@ canvas {
 
     &-welcome {
       &-title {
-        margin: 0;
+        margin: 0 20px 80px 20px;
+        line-height: 60px;
       }
 
       &-image {
@@ -37,6 +38,10 @@ canvas {
       animation-name: arrow;
       animation-iteration-count: infinite;
       animation-direction: alternate;
+    }
+
+    &-contactMe {
+      background-color: $info-color;
     }
 
     @keyframes arrow {
@@ -61,7 +66,29 @@ canvas {
   }
 
   &-continue {
-    padding: 20px 0 0 0;
+    &-presentation {
+      padding: 20px 0;
+      &-content {
+        padding: 20px 10px 0 10px;
+      }
+    }
+
+    &-skills {
+      padding: 20px 0;
+
+      &-content {
+        padding: 20px 10px 0 30px;
+      }
+    }
+
+    &-contactme {
+      padding: 20px 0;
+    }
+
+    &-comments {
+      padding: 20px 0;
+      background-color: aquamarine;
+    }
   }
 }
 
@@ -103,7 +130,29 @@ canvas {
       }
     }
     &-continue {
-      padding: 0 $padding-900;
+      &-presentation {
+        padding: 20px $padding-900;
+        &-content {
+          padding: 20px 10px 0 10px;
+        }
+      }
+
+      &-skills {
+        padding: 20px $padding-900;
+
+        &-content {
+          padding: 20px 10px 0 30px;
+        }
+      }
+
+      &-contactme {
+        padding: 20px $padding-900;
+      }
+
+      &-comments {
+        padding: 20px $padding-900;
+        background-color: aquamarine;
+      }
     }
   }
 }
@@ -115,7 +164,24 @@ canvas {
     }
 
     &-continue {
-      padding: 0 $padding-1240;
+      &-presentation {
+        padding: 20px $padding-1240;
+        &-content {
+          padding: 20px 10px 0 10px;
+        }
+      }
+
+      &-skills {
+        padding: 20px $padding-1240;
+      }
+
+      &-contactme {
+        padding: 20px $padding-1240;
+      }
+
+      &-comments {
+        padding: 20px $padding-1240;
+      }
     }
   }
 }

@@ -59,14 +59,14 @@ export default function Home() {
         <BackgroundParticles />
         <div className="home-start-welcome">
           <h1 className="home-start-welcome-title">
-            Hola, soy Luis Emilio y soy programador web.
+            ¡ Hola !, soy Luis Emilio y soy Desarrollador.
           </h1>
 
           <img className="home-start-welcome-image" src={Luis} alt="" />
         </div>
 
         <a href="#contactMe">
-          <button type="button" className="home-start-contact">
+          <button type="button" className="home-start-contactMe">
             Contácteme
           </button>
         </a>
@@ -82,84 +82,102 @@ export default function Home() {
       </div>
       <div className="home-division" />
       <div className="home-continue">
-        <div>
-          <h1>¿ QUIÉN SOY ?</h1>
+        <div className="home-continue-presentation">
+          <h1 className="home-continue-presentation-tile">
+            ¿ A QUÉ ME DEDICO ?
+          </h1>
 
-          <p>
-            Curso quinto semestre de Ingeniería de Sistemas y computación el la
-            universidad de caldas. Estoy interesado y dispuesto a ser contratado
-            ya sea por una compañía o persona independiente para llevar a cabo
-            retos de desarrollo de software que involucren la creación de
-            proyectos web full Stack.
+          <p className="home-continue-presentation-content">
+            Curso quinto semestre de
+            <b> Ingeniería de Sistemas y computación </b>
+            el la universidad de caldas.
+            <br />
+            Estoy familiarizado con el desarrollo de proyectos web usanso
+            tecnologías como
+            <b> Reat, </b>
+            así como la implementación de
+            <b> API REST </b>
+            con
+            <b> Node.js o python. </b>
           </p>
-
-          <a href={Luis} download="luis">
-            <button type="button"> descarguese algo ahí </button>
-          </a>
         </div>
-        <div>
-          <h1>¿ Qué se hacer?</h1>
-          <div className="cv-right-languages">
-            <ul>
-              <li>
-                <p> JavaScript </p>
-              </li>
-              <li>
-                <p> Java </p>
-              </li>
-              <li>
-                <p> Python </p>
-              </li>
-              <li>
-                <p> HTML5 </p>
-              </li>
-              <li>
-                <p> CSS3 </p>
-              </li>
-              <li>
-                <p> Tailwind </p>
-              </li>
-              <li>
-                <p> Bootstrap </p>
-              </li>
-            </ul>
+        <div className="home-continue-skills">
+          <h1 className="home-continue-skills-title"> SKILLS...</h1>
+          <div className="home-continue-skills-content">
+            <div>
+              <h2>Front End</h2>
+              <ul>
+                <li>
+                  <p> JavaScript </p>
+                </li>
+                <li>
+                  <p> React </p>
+                </li>
+                <li>
+                  <p> Vue </p>
+                </li>
+                <li>
+                  <p> HTML5 </p>
+                </li>
+                <li>
+                  <p> CSS3 </p>
+                </li>
+                <li>
+                  <p> Tailwind </p>
+                </li>
+                <li>
+                  <p> Bootstrap </p>
+                </li>
+              </ul>
+            </div>
 
+            <div>
+              <h2>Back End</h2>
+              <ul>
+                <li>
+                  <p> Node.js </p>
+                </li>
+                <li>
+                  <p> Python </p>
+                </li>
+                <li>
+                  <p> Java </p>
+                </li>
+                <li>
+                  <p> Express </p>
+                </li>
+                <li>
+                  <p> Flask </p>
+                </li>
+                <li>
+                  <p> MongoDB </p>
+                </li>
+                <li>
+                  <p> SQL Server </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div id="contactMe" className="home-continue-contactme">
+          <h1 className="home-continue-constactme-title">
+            ¿ Cómo puede contactarme ?
+          </h1>
+          <div className="home-continue-constactme-content">
             <ul>
-              <li>
-                <p> Node.js </p>
-              </li>
-              <li>
-                <p> React </p>
-              </li>
-              <li>
-                <p> Vue </p>
-              </li>
-              <li>
-                <p> Express </p>
-              </li>
-              <li>
-                <p> Flask </p>
-              </li>
-              <li>
-                <p> MongoDB </p>
-              </li>
-              <li>
-                <p> SQL Server </p>
-              </li>
+              <li>email</li>
+              <li>linkedin</li>
             </ul>
           </div>
         </div>
-        <div id="contactMe">
-          <h1> ¿ Cómo puede contactarme ?</h1>
-          <ul>
-            <li>email</li>
-            <li>linkedin</li>
-          </ul>
-        </div>
-        <div>
-          <h1>Sección de comentarios!</h1>
+        <div className="home-continue-comments">
+          <h1 className="home-continue-comments-title">
+            ¡ DEJA UN COMENTARIO !
+          </h1>
           <NewComment submitText="comentar" />
-          {itemListCommetns()}
+          <div className="home-continue-comments-contetn">
+            {itemListCommetns()}
+          </div>
         </div>
       </div>
     </div>
