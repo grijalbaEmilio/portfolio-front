@@ -93,8 +93,8 @@ export default function Menu(props) {
       proyects: 'Proyetos',
       edit: 'Editar',
       curriculum: 'CV',
-      logIn: 'logIn',
-      logOut: 'logOut',
+      logIn: 'Ingresar',
+      logOut: 'Salir',
     }
 
     if (windowWidthMobil()) {
@@ -125,6 +125,7 @@ export default function Menu(props) {
     return (
       <Link
         to="/"
+        className="logOut"
         onClick={() => {
           logOut()
         }}

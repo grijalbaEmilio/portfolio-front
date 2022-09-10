@@ -60,16 +60,15 @@ export default function Home() {
         <div className="home-start-welcome">
           <h1 className="home-start-welcome-title">
             ¡ Hola !, soy Luis Emilio y soy Desarrollador.
+            <a href="#contactMe" className="home-start-contactMe">
+              <button type="button" className="button-info">
+                Contácteme
+              </button>
+            </a>
           </h1>
 
           <img className="home-start-welcome-image" src={Luis} alt="" />
         </div>
-
-        <a href="#contactMe">
-          <button type="button" className="home-start-contactMe">
-            Contácteme
-          </button>
-        </a>
 
         {windowWidthMobil() ? (
           <ArrowDownOutlined className="home-start-arrow" />
@@ -160,15 +159,16 @@ export default function Home() {
           </div>
         </div>
         <div id="contactMe" className="home-continue-contactme">
-          <h1 className="home-continue-constactme-title">
+          <h1 className="home-continue-contactme-title">
             ¿ Cómo puede contactarme ?
           </h1>
-          <div className="home-continue-constactme-content">
+          <div className="home-continue-contactme-content">
             <ul>
               <li>email</li>
               <li>linkedin</li>
             </ul>
           </div>
+          <div className="home-continue-contactme-division" />
         </div>
         <div className="home-continue-comments">
           <h1 className="home-continue-comments-title">

@@ -12,13 +12,14 @@ hr {
 }
 
 .download {
+  width: 100%;
   display: block;
   margin: 50px auto;
+  text-decoration: none;
 }
 
 .cv {
-  margin-bottom: 20px;
-
+  margin: 0 0 50px 0;
   &-left {
     padding: 10px;
     background-color: $primary-color;
@@ -50,12 +51,15 @@ hr {
 }
 
 @media (min-width: 900px) {
+  .download {
+    width: auto;
+  }
   .cv {
     display: flex;
     flex-direction: row;
     border-radius: 5px;
-    box-shadow: 5px 5px 8px 8px #a0a0a0;
-    margin: 100px $padding-900 0 $padding-900;
+    box-shadow: 0.4rem 0.4rem 1rem 0 #9b9a9a;
+    margin: 150px $padding-900 0 $padding-900;
 
     &-left {
       padding: 30px;
@@ -73,6 +77,6 @@ hr {
 
 @media (min-width: 1240px) {
   .cv {
-    margin: 100px $padding-1240 0 $padding-1240;
+    margin: 150px $padding-1240 0 $padding-1240;
   }
 }

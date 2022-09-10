@@ -1,8 +1,17 @@
 @import '../../scss/index.scss';
 
+.layoutBasic {
+  min-height: 100vh;
+
+  &-main {
+    min-height: calc(100vh - 46px - 90px);
+  }
+}
+
 .footer {
   background-color: black;
   position: relative;
+  margin-top: auto;
 
   &-division {
     display: block;
@@ -21,6 +30,14 @@
 }
 
 @media (min-width: 900px) {
+  .layoutBasic {
+    min-height: 100vh;
+
+    &-main {
+      min-height: calc(100vh - 95px);
+    }
+  }
+
   .footer-content {
     padding: 30px $padding-900;
   }

@@ -12,13 +12,13 @@
     flex-direction: column;
     align-items: center;
     height: max-content;
-    background-color: rgb(145, 158, 158);
     width: 100%;
     padding: 0 0 20px 0;
 
     &-title {
       text-align: center;
       width: 100%;
+      margin-bottom: 40px;
     }
 
     &-content {
@@ -43,9 +43,49 @@
   }
 
   &-github {
+    background-color: aquamarine;
+    padding-bottom: 40px;
+    &-title {
+      margin: 40px 0;
+    }
     &-list {
-      &-image {
-        width: 100px;
+      width: 100%;
+      &-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        &-left {
+          &-image {
+            border-radius: 2rem;
+            width: 50px;
+            height: 50px;
+            margin: 0 10px 0 0;
+          }
+          &-author {
+            margin: 2px 0;
+          }
+        }
+
+        &-rigth {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: flex-end;
+          height: 100%;
+
+          &-name {
+            margin: 0;
+          }
+
+          &-language {
+            margin: 0;
+          }
+        }
+
+        &-language {
+          align-self: flex-start;
+        }
       }
     }
   }
@@ -54,7 +94,7 @@
 @media (min-width: 900px) {
   .proyects {
     &-featured {
-      padding: 100px $padding-900 30px $padding-900;
+      padding: 150px $padding-900 30px $padding-900;
       width: auto;
 
       &-content {
@@ -81,7 +121,7 @@
 @media (min-width: 1240px) {
   .proyects {
     &-featured {
-      padding: 100px $padding-1240 50px $padding-1240;
+      padding: 150px $padding-1240 50px $padding-1240;
     }
     &-github {
       padding: 20px $padding-1240 50px $padding-1240;

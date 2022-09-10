@@ -12,18 +12,29 @@ export default function Proyects() {
   function renderItemsListProyectsGithub(data) {
     const { name, login, avatarUrl, htmlUrl, language } = data
     return (
-      <div>
-        <img
-          className="proyects-github-list-image"
-          src={avatarUrl}
-          alt="no avatar"
-        />
-        <h3>{name}</h3>
-        <h3>{login}</h3>
-        <h3>{language}</h3>
-        <button type="button">
-          <a href={htmlUrl}>ver código</a>
-        </button>
+      <div className="proyects-github-list">
+        <div className="proyects-github-list-header">
+          <div className="proyects-github-list-header-left">
+            <img
+              className="proyects-github-list-header-left-image"
+              src={avatarUrl}
+              alt="no avatar"
+            />
+            <p className="proyects-github-list-header-left-author">{login}</p>
+          </div>
+          <div className="proyects-github-list-header-rigth">
+            <h3 className="proyects-github-list-header-rigth-name">{name}</h3>
+            <p className="proyects-github-list-header-rigth-language">
+              {language}
+            </p>
+          </div>
+        </div>
+
+        <a href={htmlUrl}>
+          <button className="proyects-github-list-code" type="button">
+            ver código
+          </button>
+        </a>
       </div>
     )
   }
@@ -83,7 +94,7 @@ export default function Proyects() {
 
       <div className="proyects-github">
         <h1 className="proyects-github-title">PROYECTOS DE GITHUB</h1>
-        <div className="proyects-github-content">{itemsGithubProyects()}</div>
+        <div>{itemsGithubProyects()}</div>
       </div>
     </div>
   )

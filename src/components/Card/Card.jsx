@@ -25,7 +25,7 @@ export default function Card(props) {
       <div className="card-img-front">
         <div className="card-img-front-tecnologies">
           {tecnologies.map((element, index) => (
-            <span key={index} className="card-tecnologie">
+            <span key={index} className="card-img-front-tecnologies-technology">
               {element}
             </span>
           ))}
@@ -79,14 +79,10 @@ export default function Card(props) {
 
         <div className="card-content-buttons">
           <a href={demo} className="card-content-buttons-button">
-            <button type="button" className="button">
-              Demo
-            </button>
+            <button type="button">Demo</button>
           </a>
           <a href={code} className="card-content-buttons-button">
-            <button type="button" className="button">
-              Código
-            </button>
+            <button type="button">Código</button>
           </a>
         </div>
       </div>

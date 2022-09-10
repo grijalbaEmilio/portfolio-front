@@ -127,7 +127,7 @@ export default function About() {
         </div>
       </div>
 
-      <a href={CV} download="CVLuisEmilio">
+      <a href={CV} className="download" download="CVLuisEmilio">
         <button type="button" className="download">
           Descargar
         </button>

@@ -97,8 +97,6 @@ export default function Edit() {
       {itemModal()}
 
       {itemFeatureProyectsEdit()}
-
-      <div className="edit-users">users</div>
     </div>
   )
 }

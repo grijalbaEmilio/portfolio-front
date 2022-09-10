@@ -5,29 +5,26 @@
 }
 
 .login-page {
-  height: 100vh;
+  height: calc(100vh);
   display: flex;
   justify-content: center;
+  align-items: center;
   background-image: url('../../assets/jpg/simple.jpg');
-  padding: 100px 0 0 0;
 
   &-content {
     background-color: #8080804d;
-    padding: 10px;
+    padding: 30px;
     height: min-content;
+    border-radius: 2rem;
     &-header {
       &-button {
         width: calc(50% - 6px);
         text-align: center;
         border-color: transparent;
         border-radius: 0;
+        background-color: transparent;
+        color: $color-font;
       }
     }
-  }
-}
-
-@media (min-width: 900px) {
-  .login-page {
-    padding: 200px 0 0 0;
   }
 }

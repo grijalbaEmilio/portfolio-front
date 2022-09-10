@@ -8,9 +8,9 @@ export default function LayoutBasic({ children }) {
   const { user } = appData
 
   return (
-    <div>
+    <div className="layoutBasic">
       <Menu user={user} />
-      <main>{children}</main>
+      <main className="layoutBasic-main">{children}</main>
       <footer className="footer">
         <span className="footer-division" />
         <p className="footer-content">footer</p>

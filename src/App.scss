@@ -39,6 +39,23 @@ button {
   background-color: black;
   color: $color-font-titles;
   border-radius: 100rem;
+  cursor: pointer;
+}
+
+.button-info {
+  background-color: $info-color;
+
+  &:hover {
+    background-color: $info-color-hover;
+  }
+}
+
+.button-danger {
+  background-color: $danger-color;
+
+  &:hover {
+    background-color: $danger-color-hover;
+  }
 }
 
 @media (min-width: 900px) {

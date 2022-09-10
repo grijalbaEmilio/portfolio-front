@@ -99,6 +99,27 @@
 }
 
 @media (min-width: 900px) {
+  .logOut {
+    border: 3px solid $primary-color !important;
+    margin: 2px;
+    border-radius: 2rem;
+
+    &:hover {
+      background-color: $primary-color;
+      color: $secondary-color;
+      animation: hoverLogOut 0.4s;
+
+      @keyframes hoverLogOut {
+        from {
+          background-color: $secondary-color;
+        }
+        to {
+          background-color: $primary-color;
+        }
+      }
+    }
+  }
+
   .height-scroll {
     height: 50px !important;
   }
