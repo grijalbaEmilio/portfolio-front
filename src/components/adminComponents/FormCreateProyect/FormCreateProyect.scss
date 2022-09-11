@@ -1,11 +1,56 @@
+@import '../../../scss/index.scss';
+
 .postProyects {
+  &-title {
+    text-align: center;
+  }
+
   &-content {
     display: flex;
     flex-direction: column;
 
+    &-img {
+      &-label {
+        width: auto;
+        font-size: 1.5rem;
+        color: $color-font;
+        padding: 10px 0;
+        border-radius: 2rem;
+        border: 2px dashed;
+        cursor: pointer;
+        text-transform: uppercase;
+        text-align: center;
+        margin: 0 0 5px 0;
+      }
+      &-input {
+        display: none;
+      }
+    }
+
     &-tecnologies {
       display: flex;
       flex-direction: column;
+
+      & > input,
+      & > button {
+        margin: 5px 0;
+      }
+    }
+
+    &-description {
+      margin: 5px 0;
+    }
+
+    & > input {
+      margin: 5px 0;
+    }
+  }
+  &-buttons {
+    display: flex;
+    flex-direction: column;
+
+    & > button {
+      margin: 5px 0;
     }
   }
 }

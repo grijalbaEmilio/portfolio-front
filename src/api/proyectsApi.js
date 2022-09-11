@@ -1,7 +1,7 @@
-import { BASE_PATH } from './config'
+import { BASE_PATH, API_VERSION } from './config'
 
 export async function getProyects() {
-  const resp = await fetch(`${BASE_PATH}/proyects/getProyects`)
+  const resp = await fetch(`${BASE_PATH}/${API_VERSION}/proyects/getProyects`)
     .then((res) => res.json())
     .catch()
 
@@ -14,7 +14,10 @@ export async function saveOneProyect(bodyForm) {
     body: bodyForm,
   }
 
-  const resp = await fetch(`${BASE_PATH}/proyects/postProyect`, options)
+  const resp = await fetch(
+    `${BASE_PATH}/${API_VERSION}/proyects/postProyect`,
+    options
+  )
 
   const { message } = await resp.json()
 
@@ -37,7 +40,7 @@ export async function updateOneProyect(bodyForm, id) {
     body: bodyForm,
   }
 
-  const url = `${BASE_PATH}/proyects/updateOneProyect/${id}`
+  const url = `${BASE_PATH}/${API_VERSION}/proyects/updateOneProyect/${id}`
 
   const resp = await fetch(url, options)
 
@@ -57,9 +60,12 @@ export async function updateOneProyect(bodyForm, id) {
 }
 
 export async function deleteOneProyect(id) {
-  const resp = await fetch(`${BASE_PATH}/proyects/removeOneProyect/${id}`, {
-    method: 'DELETE',
-  })
+  const resp = await fetch(
+    `${BASE_PATH}/${API_VERSION}/proyects/removeOneProyect/${id}`,
+    {
+      method: 'DELETE',
+    }
+  )
 
   const { message } = await resp.json()
 

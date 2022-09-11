@@ -15,6 +15,8 @@ export default function FormCreateProyect(props) {
     code: false,
   })
 
+  const [textInputImg, setTextInputImg] = useState('¡ Sube una imagen !')
+
   const [inputs, setInputs] = useState([0])
 
   const { reload, setReload } = useContext(providerApp)
@@ -23,6 +25,7 @@ export default function FormCreateProyect(props) {
     const { value, name } = event.target
     if (name === 'img') {
       setDataForm({ ...dataForm, [name]: event.target.files[0] })
+      setTextInputImg(event.target.files[0].name)
       return
     }
     if (name.startsWith('tecnologie-')) {
@@ -70,10 +73,20 @@ export default function FormCreateProyect(props) {
 
   return (
     <div className="postProyects">
-      <h2 className="postProyects-title">formulario de Ingreso</h2>
+      <h2 className="postProyects-title">Crear Proyecto</h2>
 
       <form name="createProyect" className="postProyects-content">
-        <input onChange={eventChange} name="img" type="file" accept="image/*" />
+        <label htmlFor="img" className="postProyects-content-img-label">
+          <span>{textInputImg}</span>
+          <input
+            className="postProyects-content-img-input"
+            onChange={eventChange}
+            name="img"
+            id="img"
+            type="file"
+            accept="image/*"
+          />
+        </label>
         <div className="postProyects-content-tecnologies">
           <button type="button" onClick={() => setInputs([...inputs, 0])}>
             más
@@ -95,6 +108,7 @@ export default function FormCreateProyect(props) {
         </div>
         <textarea
           onChange={eventChange}
+          className="postProyects-content-description"
           name="description"
           rows="10"
           cols="50"
@@ -120,20 +134,18 @@ export default function FormCreateProyect(props) {
         />
       </form>
 
-      <button
-        type="button"
-        className="postProyects-button"
-        onClick={saveProgram}
-      >
-        Crear
-      </button>
-      <button
-        type="button"
-        className="button-danger"
-        onClick={() => closeModal(false)}
-      >
-        cancelar
-      </button>
+      <div className="postProyects-buttons">
+        <button type="button" onClick={saveProgram}>
+          Crear
+        </button>
+        <button
+          type="button"
+          className="button-danger"
+          onClick={() => closeModal(false)}
+        >
+          Cancelar
+        </button>
+      </div>
     </div>
   )
 }

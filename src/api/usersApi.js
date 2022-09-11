@@ -1,4 +1,4 @@
-import { BASE_PATH } from './config'
+import { BASE_PATH, API_VERSION } from './config'
 
 export async function postUser(data) {
   const options = {
@@ -9,7 +9,10 @@ export async function postUser(data) {
     body: JSON.stringify(data),
   }
 
-  const response = await fetch(`${BASE_PATH}/users/postUser`, options)
+  const response = await fetch(
+    `${BASE_PATH}/${API_VERSION}/users/postUser`,
+    options
+  )
   const { message } = await response.json()
   if (!response.ok) {
     return {
@@ -30,7 +33,10 @@ export async function loginUser(data) {
     body: JSON.stringify(data),
   }
 
-  const response = await fetch(`${BASE_PATH}/users/loginUser`, options)
+  const response = await fetch(
+    `${BASE_PATH}/${API_VERSION}/users/loginUser`,
+    options
+  )
 
   const { message, accesToken } = await response.json()
 

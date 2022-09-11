@@ -163,10 +163,10 @@ export default function Home() {
             ¿ Cómo puede contactarme ?
           </h1>
           <div className="home-continue-contactme-content">
-            <ul>
-              <li>email</li>
-              <li>linkedin</li>
-            </ul>
+            <div>
+              <a href="mailto:luisegrijlaba8@gmail.com">email</a>
+              <a href="http://linkedin.com/in/grijalbaEmilio">linkedin</a>
+            </div>
           </div>
           <div className="home-continue-contactme-division" />
         </div>

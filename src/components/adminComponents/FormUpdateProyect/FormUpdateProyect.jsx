@@ -17,6 +17,8 @@ export default function FormUpdateProyect(props) {
     id: _id,
   })
 
+  const [textInputImg, setTextInputImg] = useState('¡ Sube una imagen !')
+
   const [inputs, setInputs] = useState(tecnologies)
 
   const { reload, setReload } = useContext(providerApp)
@@ -26,6 +28,7 @@ export default function FormUpdateProyect(props) {
 
     if (name === 'img') {
       setDataForm({ ...dataForm, [name]: event.target.files[0] })
+      setTextInputImg(event.target.files[0].name)
       return
     }
     if (name.startsWith('tecnologie-')) {
@@ -70,10 +73,20 @@ export default function FormUpdateProyect(props) {
 
   return (
     <div className="updateProyects">
-      <h2 className="updateProyects-title">formulario de Ingreso</h2>
+      <h2 className="updateProyects-title">Actualizar Proyecto</h2>
 
       <form name="UpdateProyect" className="updateProyects-content">
-        <input onChange={eventChange} name="img" type="file" accept="image/*" />
+        <label htmlFor="img" className="postProyects-content-img-label">
+          <span>{textInputImg}</span>
+          <input
+            className="postProyects-content-img-input"
+            onChange={eventChange}
+            name="img"
+            id="img"
+            type="file"
+            accept="image/*"
+          />
+        </label>
 
         <div className="updateProyects-content-tecnologies">
           <button type="button" onClick={() => setInputs([...inputs, 0])}>
@@ -125,21 +138,19 @@ export default function FormUpdateProyect(props) {
         />
       </form>
 
-      <button
-        type="submit"
-        className="updateProyects-button"
-        onClick={updateProyect}
-      >
-        Actualizar
-      </button>
+      <div className="updateProyects-buttons">
+        <button type="submit" onClick={updateProyect}>
+          Actualizar
+        </button>
 
-      <button
-        type="button"
-        className="button-danger"
-        onClick={() => closeModal(false)}
-      >
-        cancelar
-      </button>
+        <button
+          type="button"
+          className="button-danger"
+          onClick={() => closeModal(false)}
+        >
+          Cancelar
+        </button>
+      </div>
     </div>
   )
 }

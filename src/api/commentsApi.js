@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import { BASE_PATH } from './config'
+import { BASE_PATH, API_VERSION } from './config'
 
 export async function postComment(comment) {
   const options = {
@@ -8,7 +8,10 @@ export async function postComment(comment) {
     body: JSON.stringify(comment),
   }
 
-  const resp = await fetch(`${BASE_PATH}/comments/postcomment`, options)
+  const resp = await fetch(
+    `${BASE_PATH}/${API_VERSION}/comments/postcomment`,
+    options
+  )
   const { message } = await resp.json()
 
   if (!resp.ok) {
@@ -25,7 +28,7 @@ export async function postComment(comment) {
 
 export async function getComments() {
   const comments = await (
-    await fetch(`${BASE_PATH}/comments/getComments`)
+    await fetch(`${BASE_PATH}/${API_VERSION}/comments/getComments`)
   ).json()
 
   const commentsFinal = await comments.reduce(async (acc, comment) => {
