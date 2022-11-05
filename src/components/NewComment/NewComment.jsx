@@ -18,7 +18,7 @@ export default function NewComment(props) {
 
   async function submitForm() {
     if (!user.name) {
-      alert('¡ debe estar logueado para comentar !')
+      // alert('¡ debe estar logueado para comentar !')
       window.location.replace('/login')
     }
     if (!comment) {
